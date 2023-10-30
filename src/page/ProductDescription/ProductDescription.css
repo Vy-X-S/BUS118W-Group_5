@@ -1,0 +1,14 @@
+.containerProductDescription{
+  width: 100%;
+  max-width: 1920px;
+  justify-content: center;
+  .breadCrumb{
+    font-size: 40px;
+  }
+  .itemDescriptionContainer{
+    img{
+      width: 400px;
+      height: 300px;
+    }
+  }
+}

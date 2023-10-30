@@ -1,84 +1,59 @@
 import { memo, useState } from "react";
-import "./index.css";
+import "./ProductPage.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import productImage from "../../images/productDemoImg.png";
+import ItemContainer from "../../components/ItemContainer/ItemContainer";
 
 const ProductPage = memo(() => {
+  const [category, setCategory] = useState(null);
 
-  const [cate,setCate]= useState(null);
-
-  const getData = ()=>{
-  }
+  const getData = () => {};
+  const handleCatChange = (e) => {
+    // setCategory(e.target?.value)
+    console.log("Category Change")
+  };
 
   return (
     <div>
       <Header />
       <div className="container">
         <div className="catBar">
-          <input placeholder="Search"></input>
-          <button>Bread and Bakery</button>
-          <button>Fruits</button>
-          <button>Frozen Food</button>
-          <button>Meat</button>
-          <button>Vegetables</button>
+          <div className="category" onClick={handleCatChange}>
+            Bread and Bakery
+          </div>
+          <div className="category" onClick={handleCatChange}>
+            Fruits
+          </div>
+          <div className="category" onClick={handleCatChange}>
+            Frozen Food
+          </div>
+          <div className="category" onClick={handleCatChange}>
+            Meat
+          </div>
+          <div className="category" onClick={handleCatChange}>
+            Vegetables
+          </div>
         </div>
         <div className="productContainer">
-          <div className="productCat">
+          <div className="productBreadCrumb">
             <div className="mainCat">Meat</div>
             <div className="line"></div>
             <div className="subCat">Pork</div>
           </div>
           <div className="itemListContainer">
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
-            <div className="item">
-              <img className="productImg" src={productImage} alt="product" />
-              <p className="productName">Sargento Natural String Cheese Snacks, 12-Count</p>
-              <p className="review"> 321 reviews</p>
-              <p className="price">$ 9.99</p>
-              <button className="addToCartButton">Add to Cart</button>
-            </div>
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
           </div>
         </div>
       </div>
