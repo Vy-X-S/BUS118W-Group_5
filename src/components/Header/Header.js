@@ -1,6 +1,9 @@
 // Header.js
 import { useState } from "react";
 import './Header.css';
+import ProductPage from "../../page/ProductPage";
+import {Link} from "react-router-dom";
+
 
 const Header = () => {
     const [isHovered, setIsHovered] = useState(null);
@@ -74,7 +77,7 @@ const Header = () => {
                     onMouseLeave={()=> handleMouseLeave()}
                 >
                     <ul>
-                        <li><a href="#">All</a></li>
+                        <li><Link to="/product">All</Link></li>
                         <li><a href="#">Weekly Deals</a></li>
                         <li><a href='#'>Food</a></li>
                     </ul>
