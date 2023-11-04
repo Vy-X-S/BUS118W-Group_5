@@ -14,7 +14,7 @@ const ProductPage = memo(() => {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div className="containerProductCatalog">
         <div className="catBar">
           <div className="category" onClick={handleCatChange}>
             Bread and Bakery

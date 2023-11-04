@@ -2,22 +2,24 @@ import { memo } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
+import productImage from "../../images/productDemoImg.png";
+
 const ProductDescription = memo(() => {
   return (
     <div>
       <Header />
       <div className="containerProductDescription">
-        <div className="breadCrumbProductDescription">fdsafdsafsd</div>
+        <div className="breadCrumbProductDescription">fdsafdsafsd | fdsafdsjakl | fhjsdak</div>
         <div className="itemDescriptionContainer">
-          <img src="" alt="Image" />
+          <img className="productImage" src={productImage} alt="Image" />
           <div className="itemDetails">
-            <p>Brand</p>
-            <p>Name</p>
+            <p className="brandName">Brand</p>
+            <p className="productName">Name</p>
             <div className="lineProductDescription"></div>
-            <p>Member Price</p>
-            <p>Price</p>
-            <p>In Stock</p>
-            <button>Add To Cart</button>
+            <p className="memberPrice">Member Price</p>
+            <p className="price">Price</p>
+            <p className="available">In Stock</p>
+            <button className="addToCartButton">Add To Cart</button>
             <div className="deliOptions">
               <div>Pick up</div>
               <div>Delivery</div>

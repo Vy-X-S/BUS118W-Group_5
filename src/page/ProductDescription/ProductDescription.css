@@ -1,14 +1,93 @@
-.containerProductDescription{
+.containerProductDescription {
   width: 100%;
   max-width: 1920px;
   justify-content: center;
-  .breadCrumb{
+  .breadCrumbProductDescription {
     font-size: 40px;
   }
-  .itemDescriptionContainer{
-    img{
-      width: 400px;
-      height: 300px;
+  .itemDescriptionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .productImage {
+      width: 670px;
+      height: 760px;
+      object-fit: contain;
+      object-position: center;
+    }
+    .itemDetails {
+      display: flex;
+      flex-direction: column;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      padding: 29px 42px;
+      .brandName {
+        color: var(--Blue, #1e6685);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .productName {
+        color: var(--Dark-Gray, #2f2d2e);
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .lineProductDescription {
+        width: 550.388px;
+        height: 1px;
+        background-color: black;
+        margin-top: 19px;
+        margin-bottom: 59px;
+      }
+      .memberPrice {
+        color: var(--Orange, #fd9043);
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .price {
+        color: var(--Orange, #fd9043);
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .available {
+        color: #149200;
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .addToCartButton {
+        color: white;
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: flex;
+        width: 207px;
+        height: 44px;
+        padding: 8px 55px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        border: none;
+        background: var(--Blue, #fd9043);
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
