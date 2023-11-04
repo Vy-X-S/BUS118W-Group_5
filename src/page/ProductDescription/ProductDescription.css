@@ -1,17 +1,29 @@
 .containerProductDescription {
   width: 100%;
   max-width: 1920px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin-left: auto;
+  margin-right: auto;
   .breadCrumbProductDescription {
     font-size: 40px;
+    margin-right: auto;
   }
   .itemDescriptionContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 36px;
     .productImage {
-      width: 670px;
-      height: 760px;
+      width: 100%;
+      height: 100%;
+      max-width: 536px;
+      max-height: 340px;
       object-fit: contain;
       object-position: center;
     }
@@ -21,6 +33,11 @@
       border-radius: 25px;
       border: 1px solid #ddd;
       padding: 29px 42px;
+      width: 100%;
+      height: 100%;
+      max-width: 635px;
+      max-height: 767px;
+      gap: 10px;
       .brandName {
         color: var(--Blue, #1e6685);
         font-size: 20px;
@@ -58,14 +75,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-      }
-      .available {
-        color: #149200;
-        font-family: Verdana;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+        padding-bottom: 36px;
       }
       .addToCartButton {
         color: white;
@@ -88,6 +98,61 @@
           cursor: pointer;
         }
       }
+      .available {
+        color: #149200;
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      
+      .deliOptions {
+        .option {
+          border: 1px solid #d2d2d2;
+          width: 385px;
+          height: 45px;
+          justify-content: center;
+          align-items: center;
+          color: #000;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          .status {
+            color: #149200;
+          }
+        }
+      }
+      .nutritionTitle {
+        color: var(--Dark-Gray, #2f2d2e);
+        font-family: Verdana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+      .nutritionInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .nutritionDetail {
+          display: flex;
+          gap: 50px;
+          .macro {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+          }
+        }
+      }
     }
   }
+}
+hr {
+  width: 100%;
 }
