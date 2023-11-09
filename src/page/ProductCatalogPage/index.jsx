@@ -39,7 +39,6 @@ const ProductPage = memo(() => {
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
-              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
             </div>
           </div>
           <div className="categoryContainer">
@@ -48,13 +47,11 @@ const ProductPage = memo(() => {
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
-              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
             </div>
           </div>
           <div className="categoryContainer">
             <p className="categoryTitle">Cate</p>
             <div className="itemList">
-              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
