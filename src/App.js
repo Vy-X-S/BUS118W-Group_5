@@ -18,7 +18,7 @@ function App() {
           <Route path="/home" Component={HomePage}/>
 
           <Route path="/catalog" Component={ProductCatalogPage}/>
-          <Route path="/product" Component={ProductPage}/>
+          <Route path="/product/:category" Component={ProductPage}/>
           <Route path="/product/:id/description" Component={ProductDescription}/>
 
           <Route path="/product" Component={ProductPage} />

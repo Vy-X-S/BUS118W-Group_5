@@ -4,8 +4,10 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import productImage from "../../images/productDemoImg.png";
 import ItemContainer from "../../components/ItemContainer/ItemContainer";
+import { useParams } from "react-router";
 
 const ProductPage = memo(() => {
+  const { category } = useParams();
   const [cate, setCate] = useState(null);
 
   const getData = () => {};
@@ -39,19 +41,22 @@ const ProductPage = memo(() => {
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
-            </div>
-          </div>
-          <div className="categoryContainer">
-            <p className="categoryTitle">Cate</p>
-            <div className="itemList">
-              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
-              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
             </div>
           </div>
           <div className="categoryContainer">
             <p className="categoryTitle">Cate</p>
             <div className="itemList">
+              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
+            </div>
+          </div>
+          <div className="categoryContainer">
+            <p className="categoryTitle">Cate</p>
+            <div className="itemList">
+              <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />
               <ItemContainer image={productImage} productName="Sargento Natural String Cheese Snacks, 12-Count" review="321" price="9.99" />

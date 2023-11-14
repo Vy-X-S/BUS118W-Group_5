@@ -3,15 +3,25 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
 import productImage from "../../images/productDemoImg.png";
+import AddToCartButton from "../../components/AddToCartButton/AddToCart";
+import { useParams } from "react-router";
 
 const ProductDescription = memo(() => {
+  const { id } = useParams();
   return (
     <div>
       <Header />
       <div className="containerProductDescription">
         <div className="breadCrumbProductDescription">fdsafdsafsd | fdsafdsjakl | fhjsdak</div>
         <div className="itemDescriptionContainer">
-          <img className="productImage" src={productImage} alt="product" />
+          <div className="productImageContainer">
+            <div className="allSubProductImage">
+              <img className="subProductImage" src={productImage} alt="" />
+              <img className="subProductImage" src={productImage} alt="" />
+              <img className="subProductImage" src={productImage} alt="" />
+            </div>
+            <img className="productImage" src={productImage} alt="product" />
+          </div>
           <div className="itemDetails">
             <p className="brandName">Brand</p>
             <p className="productName">Name</p>
@@ -19,7 +29,7 @@ const ProductDescription = memo(() => {
             <p className="memberPrice">Member Price</p>
             <p className="price">$5.49/ ea</p>
             <p className="available">In Stock</p>
-            <button className="addToCartButton">Add To Cart</button>
+            <AddToCartButton></AddToCartButton>
             <div className="deliOptions">
               <div className="option">
                 Pick up <span className="status">available</span>
@@ -58,18 +68,22 @@ const ProductDescription = memo(() => {
           </div>
         </div>
         <div className="productInfo">
-          <p>Details</p>
+          <b>Details</b>
           <hr />
           <p className="description">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati,
-            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!
+            iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati, iusto eaque saepe numquam quaerat quae magni, libero
+            porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa
+            accusantium nostrum obcaecati, iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit
+            amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati, iusto eaque saepe numquam
+            quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque
+            tenetur sit soluta culpa accusantium nostrum obcaecati, iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis
+            earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum
+            obcaecati, iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Totam commodi itaque tenetur sit soluta culpa accusantium nostrum obcaecati, iusto eaque saepe numquam quaerat quae
+            magni, libero porro quis perspiciatis earum!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam commodi itaque tenetur sit
+            soluta culpa accusantium nostrum obcaecati, iusto eaque saepe numquam quaerat quae magni, libero porro quis perspiciatis earum!
           </p>
         </div>
       </div>

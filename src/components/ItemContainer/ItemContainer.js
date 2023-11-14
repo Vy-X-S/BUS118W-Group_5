@@ -6,10 +6,10 @@ import AddToCartButton from "../AddToCartButton/AddToCart";
 const ItemContainer = memo((props) => {
   const navigate = useNavigate();
 
-  const handleAddToCart = () => {
-    // props.addToCart(props)
-    console.log("Add to Cart");
-  };
+  // const handleAddToCart = () => {
+  //   // props.addToCart(props)
+  //   console.log("Add to Cart");
+  // };
   const handleOnClick = () => {
     navigate(`/product/${props.id}/description`);
   };

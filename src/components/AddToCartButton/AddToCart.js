@@ -8,9 +8,7 @@ const AddToCartButton = memo((props) => {
     // props.addToCart(props)
     console.log("Add to Cart");
   };
-  // const handleOnClick = () => {
-  //   history.push(`/product/${props.id}/description`);
-  // };
+  
   return (
     <button
       className="addToCartButton"
