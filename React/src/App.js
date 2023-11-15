@@ -7,6 +7,7 @@ import ProductCatalogPage from "./page/ProductCatalogPage";
 import ProductDescription from "./page/ProductDescription";
 
 import AboutPage from "./page/AboutPage";
+import Cart from "./page/CartPage";
 
 
 function App() {
@@ -16,11 +17,10 @@ function App() {
         <Routes>
           <Route index Component={HomePage}/>
           <Route path="/home" Component={HomePage}/>
-
           <Route path="/catalog" Component={ProductCatalogPage}/>
           <Route path="/product/:category" Component={ProductPage}/>
           <Route path="/product/:id/description" Component={ProductDescription}/>
-
+          <Route path="/cart" Component={Cart}/>
           <Route path="/product" Component={ProductPage} />
           <Route path="/about" Component={AboutPage}/>
 

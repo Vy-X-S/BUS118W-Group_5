@@ -68,7 +68,9 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="cart-section">🛒</div>
+          <Link to={`/cart`} className="cart-section">
+            🛒
+          </Link>
         </div>
       </div>
 
