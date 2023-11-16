@@ -11,12 +11,7 @@
   background: white !important;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.15);
   transition: all ease 0.2s;
-  /* .linkTag {
-    text-decoration: none !important;
-    color: black !important;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; */
+
   .productImg {
     width: 100% !important;
     height: 188px;
@@ -27,7 +22,9 @@
     width: fit-content;
     margin-right: auto;
   }
-  /* } */
+  .price{
+    margin-top: 40px;
+  }
 
   &:hover {
     transition: all ease 0.2s;
