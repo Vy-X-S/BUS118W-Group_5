@@ -54,9 +54,15 @@ const ProductPage = memo(() => {
             {data ? (
               <div className="itemList">
                 {data?.slice(0, 4).map((item, key) => {
-                  console.log("Item:", item);
                   return item?.category_id === 1 ? (
-                    <ItemContainer id={item?.product_id} key={key} image={productImage} productName={item?.product_name} price={item?.price} />
+                    <ItemContainer
+                      product={item}
+                      id={item?.product_id}
+                      key={key}
+                      image={productImage}
+                      productName={item?.product_name}
+                      price={item?.price}
+                    />
                   ) : null;
                 })}
               </div>

@@ -17,8 +17,6 @@ const ProductPage = memo(() => {
     getData();
   }, []);
 
-  console.log(data);
-
   const getData = () => {
     setIsLoading(true);
     ApiService.GET("/products/", { skip: 0, limit: 100 })
@@ -69,7 +67,16 @@ const ProductPage = memo(() => {
           ) : (
             <div className="itemListContainer">
               {data?.map((item, key) => {
-                return <ItemContainer key={key} id={item?.product_id} image={productImage} productName={item?.product_name} price={item?.price} />;
+                return (
+                  <ItemContainer
+                    key={key}
+                    product={item}
+                    id={item?.product_id}
+                    image={productImage}
+                    productName={item?.product_name}
+                    price={item?.price}
+                  />
+                );
               })}
             </div>
           )}

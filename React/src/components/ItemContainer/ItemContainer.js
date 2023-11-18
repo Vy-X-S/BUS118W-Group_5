@@ -6,7 +6,7 @@ import ApiService from "../../services/api_services";
 
 const ItemContainer = memo((props) => {
   const navigate = useNavigate();
-
+  
   const handleOnClick = () => {
     if (props?.id) {
       navigate(`/product/${props?.id}/description`);
@@ -18,7 +18,7 @@ const ItemContainer = memo((props) => {
       <img className="productImg" src={props?.image} alt="product" />
       <p className="productName">{props?.productName}</p>
       <p className="price">$ {props?.price}</p>
-      <AddToCartButton></AddToCartButton>
+      <AddToCartButton product={props.product}></AddToCartButton>
     </div>
   );
 });

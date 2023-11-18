@@ -54,7 +54,7 @@ const ProductDescription = memo((props) => {
               <p className="memberPrice">Member Price</p>
               <p className="price">${data[0]?.price ?? "N/A"}/ ea</p>
               <p className="available">{data[0]?.inventory_count !== 0 ? "In Stock" : "Out of stock"}</p>
-              <AddToCartButton></AddToCartButton>
+              <AddToCartButton product={data[0]}></AddToCartButton>
               <div className="deliOptions">
                 <div className="option">
                   Pick up <span className="status">available</span>

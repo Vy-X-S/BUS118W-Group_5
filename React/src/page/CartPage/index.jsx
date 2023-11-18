@@ -3,20 +3,25 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./CartPage.css";
 import productImage from "../../images/productDemoImg.png";
-import AddToCartButton from "../../components/AddToCartButton/AddToCart";
-import { useParams } from "react-router";
-import ApiService from "../../services/api_services";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Cart = memo((props) => {
   const navigate = useNavigate();
   // const { id } = useParams();
   // const [data, setData] = useState(null);
-
+  const [isClearCart, setIsClearCart] = useState(false);
   const cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
+
+  useEffect(() => {}, [isClearCart]);
 
   const handleClearCart = () => {
     console.log("Clear Cart");
+    // Clear the cart from local storage
+    localStorage.clear();
+    // Set the cart variable to an empty array
+    setIsClearCart(true);
+    console.log(cart);
   };
   const handleSubtractAmount = () => {
     console.log("Subtract");
@@ -42,27 +47,34 @@ const Cart = memo((props) => {
             </div>
             <div className="line2"> </div>
             <div className="cartProductInfoContainer">
-              <div className="cartProductInfo">
-                <img className="cartProductImage" src={productImage} alt="product" />
-                <div className="cartProductDescription">
-                  <div>Product Name</div>
-                  <div>Brand</div>
-                  <div className="cartAmount">
-                    <div className="cartAmountAdjust">
-                      <span className="adjustAmount" onClick={handleSubtractAmount}>
-                        -
-                      </span>
-                      1
-                      <span className="adjustAmount" onClick={handleAddAmount}>
-                        +
-                      </span>
-                    </div>
-                    <div className="itemDeleteButton" onClick={handleDeleteItem}>
-                      Delete
+              {cart ? (
+                cart?.map((item, key) => (
+                  <div key={key} className="cartProductInfo">
+                    <img className="cartProductImage" src={productImage} alt="product" />
+                    <div className="cartProductDescription">
+                      <div>{item.product_name}</div>
+                      <div>Brand</div>
+                      <div className="cartAmount">
+                        <div className="cartAmountAdjust">
+                          <span className="adjustAmount" onClick={handleSubtractAmount}>
+                            -
+                          </span>
+                          {item?.quantity}
+                          {console.log(item?.quantity)}
+                          <span className="adjustAmount" onClick={handleAddAmount}>
+                            +
+                          </span>
+                        </div>
+                        <div className="itemDeleteButton" onClick={handleDeleteItem}>
+                          Delete
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))
+              ) : (
+                <div>There's no item in the cart.</div>
+              )}
             </div>
           </div>
           <div className="cartInformation">
