@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
 import productImage from "../../images/productDemoImg.png";
-import AddToCartButton from "../../components/AddToCartButton/AddToCart";
+import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
 import { useParams } from "react-router";
 import ApiService from "../../services/api_services";
 import { Link } from "react-router-dom";
@@ -11,8 +11,6 @@ import { Link } from "react-router-dom";
 const ProductDescription = memo((props) => {
   const { id } = useParams();
   const [data, setData] = useState(null);
-
-  console.log(data);
 
   useEffect(() => {
     if (getProduct) {

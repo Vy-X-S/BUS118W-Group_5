@@ -31,7 +31,6 @@ const ProductPage = memo(() => {
   };
   const handleCatChange = (e) => {
     setCategory(e?.target?.value);
-    console.log(e?.target?.value);
     console.log("Category Change");
   };
 

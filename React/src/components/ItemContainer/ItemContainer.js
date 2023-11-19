@@ -1,12 +1,11 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import "./ItemContainer.css";
-import { Link, useHistory, useParams, useNavigate } from "react-router-dom";
-import AddToCartButton from "../AddToCartButton/AddToCart";
-import ApiService from "../../services/api_services";
+import { useNavigate } from "react-router-dom";
+import AddToCartButton from "../AddToCartButton/AddToCartButton";
 
 const ItemContainer = memo((props) => {
   const navigate = useNavigate();
-  
+
   const handleOnClick = () => {
     if (props?.id) {
       navigate(`/product/${props?.id}/description`);

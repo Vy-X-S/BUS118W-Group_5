@@ -5,39 +5,93 @@ import "./CartPage.css";
 import productImage from "../../images/productDemoImg.png";
 import { useNavigate } from "react-router-dom";
 
-const Cart = memo((props) => {
+const CartPage = memo(() => {
   const navigate = useNavigate();
-  // const { id } = useParams();
-  // const [data, setData] = useState(null);
   const [isClearCart, setIsClearCart] = useState(false);
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart);
+  const [isAmountChange, setIsAmountChange] = useState(false);
+  const [cart, setCart] = useState(null);
 
-  useEffect(() => {}, [isClearCart]);
+  useEffect(() => {
+    // Fetch the latest data from localStorage when the component mounts
+    const currentCart = JSON.parse(localStorage.getItem("cart"));
+    setCart(currentCart);
+  }, [isClearCart, isAmountChange]);
+
+  const getTotalItem = () => {
+    let totalItem = 0;
+    cart?.forEach((item) => {
+      totalItem += item?.quantity || 0;
+    });
+    return totalItem;
+  };
+  const totalItems = getTotalItem();
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+    cart?.forEach((item) => {
+      totalPrice += item?.price * item?.quantity || 0;
+    });
+    return totalPrice;
+  };
+  const totalPrice = getTotalPrice();
 
   const handleClearCart = () => {
-    console.log("Clear Cart");
     // Clear the cart from local storage
     localStorage.clear();
     // Set the cart variable to an empty array
     setIsClearCart(true);
-    console.log(cart);
-  };
-  const handleSubtractAmount = () => {
-    console.log("Subtract");
   };
 
-  const handleAddAmount = () => {
-    console.log("Add");
+  const handleSubtractAmount = (product_id) => {
+    setIsAmountChange(true);
+    const isExistingInCart = cart?.find((item) => item.product_id === product_id);
+    if (isExistingInCart) {
+      const updateCart = JSON.stringify(
+        cart.map((item) => {
+          if (item.product_id === product_id) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        })
+      );
+      const newCart = JSON.parse(updateCart).filter((item) => item?.quantity > 0);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      setCart(newCart); // Update the state with the new cart data
+    }
+    setIsAmountChange(false);
   };
-  const handleDeleteItem = () => {
-    console.log("Delete");
+
+  const handleAddAmount = (product_id) => {
+    setIsAmountChange(true);
+    const isExistingInCart = cart?.find((item) => item.product_id === product_id);
+    if (isExistingInCart) {
+      const updatedCart = JSON.stringify(
+        cart?.map((item) => {
+          if (item.product_id === product_id) {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+          return item;
+        })
+      );
+      const newCart = JSON.parse(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      setCart(newCart);
+    }
+    setIsAmountChange(false);
+  };
+  const handleDeleteItem = (product_id) => {
+    setIsAmountChange(true);
+    const updatedCart = cart?.filter((item) => item.product_id !== product_id);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
+    setIsAmountChange(false);
   };
 
   return (
     <div>
       <Header />
-      <div className="cartContainer">
+      <div className="mainCartContainer">
+        <div className="cartContainer">
         <div className="cartTitle">Grocery Cart</div>
         <div className="cartInfoContainer">
           <div className="cartProduct">
@@ -56,31 +110,36 @@ const Cart = memo((props) => {
                       <div>Brand</div>
                       <div className="cartAmount">
                         <div className="cartAmountAdjust">
-                          <span className="adjustAmount" onClick={handleSubtractAmount}>
+                          <span
+                            className="adjustAmount"
+                            onClick={() => {
+                              handleSubtractAmount(item?.product_id);
+                            }}
+                          >
                             -
                           </span>
                           {item?.quantity}
-                          {console.log(item?.quantity)}
-                          <span className="adjustAmount" onClick={handleAddAmount}>
+                          <span className="adjustAmount" onClick={() => handleAddAmount(item?.product_id)}>
                             +
                           </span>
                         </div>
-                        <div className="itemDeleteButton" onClick={handleDeleteItem}>
+                        <div className="itemDeleteButton" onClick={() => handleDeleteItem(item?.product_id)}>
                           Delete
                         </div>
                       </div>
                     </div>
+                    <div className="cartItemPrice">$ {item?.price}</div>
                   </div>
                 ))
               ) : (
-                <div>There's no item in the cart.</div>
+                <div className="noItemInCart">There's no item in the cart.</div>
               )}
             </div>
           </div>
           <div className="cartInformation">
             <div className="cartInfoLine">
               <div>Total Items</div>
-              <div>1</div>
+              <div>{totalItems}</div>
             </div>
             <div className="cartInfoLine">
               <div>Total Saving</div>
@@ -88,7 +147,7 @@ const Cart = memo((props) => {
             </div>
             <div className="cartInfoLine">
               <div>Subtotal</div>
-              <div>$10.32</div>
+              <div>$ {totalPrice.toFixed(2)}</div>
             </div>
             <button className="cartCheckOutBtn">Check out</button>
             <div className="cartLower">
@@ -104,10 +163,11 @@ const Cart = memo((props) => {
             </div>
           </div>
         </div>
+        </div>
       </div>
       <Footer />
     </div>
   );
 });
 
-export default Cart;
+export default CartPage;

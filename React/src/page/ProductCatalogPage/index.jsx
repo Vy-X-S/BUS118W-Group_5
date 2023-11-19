@@ -53,7 +53,7 @@ const ProductPage = memo(() => {
             <p className="categoryTitle">Meat</p>
             {data ? (
               <div className="itemList">
-                {data?.slice(0, 4).map((item, key) => {
+                {data?.map((item, key) => {
                   return item?.category_id === 1 ? (
                     <ItemContainer
                       product={item}
