@@ -39,11 +39,11 @@ const ProductDescription = memo((props) => {
           <div className="itemDescriptionContainer">
             <div className="productImageContainer">
               <div className="allSubProductImage">
-                <img className="subProductImage" src={productImage} alt="" />
-                <img className="subProductImage" src={productImage} alt="" />
-                <img className="subProductImage" src={productImage} alt="" />
+                <img className="subProductImage" src={data[0]?.product_image ?? productImage} alt="" />
+                <img className="subProductImage" src={data[0]?.product_image ?? productImage} alt="" />
+                <img className="subProductImage" src={data[0]?.product_image ?? productImage} alt="" />
               </div>
-              <img className="productImage" src={productImage} alt="product" />
+              <img className="productImage" src={data[0]?.product_image ?? productImage} alt="product" />
             </div>
             <div className="itemDetails">
               <p className="brandName">Brand</p>
