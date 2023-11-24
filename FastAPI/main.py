@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Path, Depends
 from typing import Annotated, List
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -8,13 +8,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-   'http://localhost:3000'
-]
-
+# Configure CORS
 app.add_middleware(
-   CORSMiddleware,
-   allow_origins=origins,
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Pydantic Model for Category creation
@@ -85,6 +85,10 @@ class ProductImageModel(BaseModel):
 
    class Config:
       orm_mode = True
+class ProductDetailModel(BaseModel):
+   product: ProductModel
+   images: List[ProductImageModel]
+   nutrition: NutritionModel
 
 def get_db():
    db = SessionLocal()
@@ -95,7 +99,7 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
-#models.Base.metadata.drop_all(bind=engine)
+#models.Base.metadata.drop_all(bind=engine) # CLEARS PRODUCT DB
 models.Base.metadata.create_all(bind=engine)
 
 @app.get("/products/", response_model=List[ProductModel])
@@ -204,7 +208,6 @@ def create_product_image(product_id: int, image: ProductImageCreate, db: Session
     # Now create the new ProductImage
     db_image = models.ProductImage(
         product_id=product_id,
-        image_type=image.image_type,
         image_URL=image.image_URL,
         image_sequence=image.image_sequence
     )
@@ -212,6 +215,30 @@ def create_product_image(product_id: int, image: ProductImageCreate, db: Session
     db.commit()
     db.refresh(db_image)
     return db_image
+
+# CONTEXTUAL INDIVIDUAL CALLS
+
+# =============== for individual Product Page =============================
+@app.get("/api/products/{product_id}", response_model=ProductDetailModel)
+def get_product_details(product_id: int = Path(..., description="The ID of the product to retrieve"), db: Session = Depends(get_db)):
+   # Query the database to get the product, its images, and nutrition data
+   product = db.query(models.Product).filter(models.Product.product_id == product_id).first()
+   if not product:
+      raise HTTPException(status_code=404, detail="Product not found")
+
+   images = db.query(models.ProductImage).filter(models.ProductImage.product_id == product_id).all()
+   nutrition = db.query(models.Nutrition).filter(models.Nutrition.product_id == product_id).first()
+
+   # Convert SQLAlchemy objects to dictionaries
+   product_dict = {column.name: getattr(product, column.name) for column in product.__table__.columns}
+   images_dicts = [{column.name: getattr(image, column.name) for column in image.__table__.columns} for image in images]
+   nutrition_model = NutritionModel(**{column.name: getattr(nutrition, column.name) for column in nutrition.__table__.columns}) if nutrition else None
+
+   # Parse dictionaries into Pydantic models
+   product_model = ProductModel(**product_dict)
+   images_models = [ProductImageModel(**image_dict) for image_dict in images_dicts]
+
+   return ProductDetailModel(product=product_model, images=images_models, nutrition=nutrition_model)
 
 @app.get("/")
 def read_root():

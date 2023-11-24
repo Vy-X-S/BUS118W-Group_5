@@ -47,7 +47,6 @@ class ProductImage(Base):
 
    image_id = Column(Integer, primary_key=True)
    product_id = Column(Integer, ForeignKey('products.product_id'))
-   #image_type = Column(String)
    image_URL = Column(String)
    image_sequence = Column(Integer)
 

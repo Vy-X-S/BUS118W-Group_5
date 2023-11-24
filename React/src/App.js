@@ -8,7 +8,6 @@ import ProductDescription from "./page/ProductDescription";
 
 import AboutPage from "./page/AboutPage";
 
-
 function App() {
   return (
     <div className="App">
@@ -19,8 +18,8 @@ function App() {
 
           <Route path="/catalog" Component={ProductCatalogPage}/>
           <Route path="/product" Component={ProductPage}/>
-          <Route path="/product/:id/description" Component={ProductDescription}/>
-
+          <Route path="/products/:productId" element={<ProductDescription />} />
+          
           <Route path="/product" Component={ProductPage} />
           <Route path="/about" Component={AboutPage}/>
 

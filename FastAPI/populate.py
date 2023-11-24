@@ -1,8 +1,8 @@
 import requests
 
 # Endpoint URL for creating categories and subcategories (replace with your actual endpoints)
-category_endpoint = "http://127.0.0.1:8001/categories"
-subcategory_endpoint = "http://127.0.0.1:8001/subcategories"
+category_endpoint = "http://127.0.0.1:8000/categories"
+subcategory_endpoint = "http://127.0.0.1:8000/subcategories"
 
 # Define your categories
 categories = ["Meats", "Bread and Bakery", "Fruit"]

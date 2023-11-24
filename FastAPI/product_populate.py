@@ -67,7 +67,7 @@ products_to_create.dropna(subset=["product_name"], inplace=True)
 # and that the "requests" library has been imported.
 
 # FastAPI server endpoint for creating products
-product_creation_endpoint = "http://127.0.0.1:8001/products/"
+product_creation_endpoint = "http://127.0.0.1:8000/products/"
 
 # Convert the dataframe to a list of dictionaries for API POST requests
 products_list = products_to_create.to_dict(orient="records")
