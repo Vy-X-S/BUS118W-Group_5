@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Pydantic Model for Category creation
+# Pydantic Models for Creation
 class ProductCreate(BaseModel):
    product_name: str
    inventory_count: int
@@ -41,7 +41,7 @@ class ProductImageCreate(BaseModel):
    image_URL: str # Use from Amazon/Wholefoods
    image_sequence: int # Meta images, 0 is main
 
-# Pydantic model for reading Category data
+# Pydantic models
 class ProductModel(BaseModel):
    product_id: int
    product_name: str
@@ -50,6 +50,7 @@ class ProductModel(BaseModel):
    price: float
    category_id: int
    subcategory_id: int
+   main_image_url: Optional[str] = None
 
    class Config:
       orm_mode = True
@@ -91,6 +92,10 @@ class ProductDetailModel(BaseModel):
    nutrition: Optional[NutritionModel]
    category_name: str
    sub_category_name: str
+class SubCategoryWithProducts(BaseModel):
+   subcategory_id: int
+   subcategory_name: str
+   products: List[ProductModel]
 
 def get_db():
    db = SessionLocal()
@@ -256,6 +261,51 @@ def get_product_details(product_id: int = Path(..., description="The ID of the p
       category_name=category_name,
       sub_category_name=sub_category_name
    )
+
+# =============== for individual subcategory Page show all products =============================
+@app.get("/api/categories/{category_id}/subcategories/", response_model=List[SubCategoryWithProducts])
+def get_subcategories_with_products(category_id: int, db: Session = Depends(get_db)):
+    subcategories = db.query(
+       models.SubCategory
+       ).filter(
+         models.SubCategory.category_id == category_id).all()
+    
+    if not subcategories:
+        raise HTTPException(status_code=404, detail="Category not found or no subcategories found")
+
+    result = []
+    for subcategory in subcategories:
+        products_with_images = []
+        products = db.query(models.Product).filter(models.Product.subcategory_id == subcategory.sb_category_id).all()
+
+        for product in products:
+            # Get the main image (image_sequence = 0)
+            main_image = db.query(models.ProductImage).filter(
+                models.ProductImage.product_id == product.product_id,
+                models.ProductImage.image_sequence == 0
+            ).first()
+
+            # Convert to Pydantic models
+            product_model = ProductModel(
+                product_id=product.product_id,
+                product_name=product.product_name,
+                inventory_count=product.inventory_count,
+                description=product.description,
+                price=product.price,
+                category_id=product.category_id,
+                subcategory_id=product.subcategory_id,
+                main_image_url=main_image.image_URL if main_image else None
+            )
+
+            products_with_images.append(product_model)
+
+        result.append(SubCategoryWithProducts(
+            subcategory_id=subcategory.sb_category_id,
+            subcategory_name=subcategory.sb_category_name,
+            products=products_with_images
+        ))
+
+    return result
 
 @app.get("/")
 def read_root():

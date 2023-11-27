@@ -1,32 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import HomePage from "./page/HomePage";
-import ProductPage from "./page/ProductPage";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import ProductCatalogPage from "./page/ProductCatalogPage";
-import ProductDescription from "./page/ProductDescription";
+import HomePage from './page/HomePage';
+import ProductCatalogPage from './page/ProductCatalogPage';
+import SubcategoryPage from './page/SubcategoryPage';
+import ProductDescription from './page/ProductDescription';
+import AboutPage from './page/AboutPage';
 
-import AboutPage from "./page/AboutPage";
-
-function App() {
+const AppRouter = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route index Component={HomePage}/>
-          <Route path="/home" Component={HomePage}/>
-
-          <Route path="/catalog" Component={ProductCatalogPage}/>
-          <Route path="/product" Component={ProductPage}/>
-          <Route path="/products/:productId" element={<ProductDescription />} />
-          
-          <Route path="/product" Component={ProductPage} />
-          <Route path="/about" Component={AboutPage}/>
-
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/catalog" element={<ProductCatalogPage />} />
+        <Route path="/categories/:categoryId" element={<SubcategoryPage />} />
+        <Route path="/products/:productId" element={<ProductDescription />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
-export default App;
+export default AppRouter;

@@ -60,6 +60,7 @@ const HomePage = memo(()=>{
 
   <div>
     <Link to="/products/1">View Product 1</Link>
+    <Link to="/catalog/1">View Category 1</Link>
   </div>
 
 </div>

@@ -1,7 +1,6 @@
 // Header.js
 import { useState } from "react";
 import './Header.css';
-import ProductPage from "../../page/ProductPage";
 import {Link} from "react-router-dom";
 
 
