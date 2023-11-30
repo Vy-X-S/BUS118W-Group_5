@@ -19,19 +19,18 @@ const ProductPage = memo(() => {
   const frozenItems = data?.filter((items) => items.category_id === 4);
 
   useEffect(() => {
-    // getData();
-    setData(dataSet);
+    getData();
   }, []);
 
-  // const getData = () => {
-  //   ApiService.GET("/products/")
-  //     .then((response) => {
-  //       setData(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const getData = () => {
+    ApiService.GET("/products/")
+      .then((response) => {
+        setData(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleCatChange = (category) => {
     navigate(`/product/${category}`);
   };

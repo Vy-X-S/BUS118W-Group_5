@@ -4,7 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import productImage from "../../images/productDemoImg.png";
 import ItemContainer from "../../components/ItemContainer/ItemContainer";
-// import ApiService from "../../services/api_services";
+import ApiService from "../../services/api_services";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import dataSet from "../../dataSet/dataSet";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,32 +18,34 @@ const ProductPage = memo(() => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const meatItems = dataSet?.filter((items) => items.category_id === 1);
-  const vegItems = dataSet?.filter((items) => items.category_id === 2);
-  const breadItems = dataSet?.filter((items) => items.category_id === 3);
-  const frozenItems = dataSet?.filter((items) => items.category_id === 4);
+  const meatItems = data?.filter((items) => items.category_id === 1);
+  const vegItems = data?.filter((items) => items.category_id === 2);
+  const breadItems = data?.filter((items) => items.category_id === 3);
+  const frozenItems = data?.filter((items) => items.category_id === 4);
 
   useEffect(() => {
-    // setTimeout(1000);
-    // getData();
+    setTimeout(1000);
+    getData();
     setIsLoading(true);
-    handleCatChange();
-  }, [categoryId, category, handleCatChange]);
+    if (handleCatChange) {
+      handleCatChange();
+    }
+  }, [categoryId, category]);
 
-  // const getData = () => {
-  //   setIsLoading(true);
-  //   ApiService.GET("/products/", { skip: 0, limit: 100 })
-  //     .then((response) => {
-  //       setData(response);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setIsLoading(false);
-  //     });
-  // };
+  const getData = () => {
+    setIsLoading(true);
+    ApiService.GET("/products/", { skip: 0, limit: 100 })
+      .then((response) => {
+        setData(response);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  };
 
-  const handleCatChange = useCallback(() => {
+  const handleCatChange = () => {
     setIsLoading(true);
     switch (categoryId) {
       case 1:
@@ -59,14 +61,14 @@ const ProductPage = memo(() => {
         setData(frozenItems);
         break;
       default:
-        setData(dataSet);
+        setData(data);
     }
     navigate(`/product/${categoryId}`);
 
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-  }, []);
+  };
 
   return (
     <div>
