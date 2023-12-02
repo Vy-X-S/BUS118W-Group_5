@@ -6,47 +6,21 @@ import productImage from "../../images/productDemoImg.png";
 import ItemContainer from "../../components/ItemContainer/ItemContainer";
 import ApiService from "../../services/api_services";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import dataSet from "../../dataSet/dataSet";
+// import dataSet from "../../dataSet/dataSet";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductPage = memo(() => {
   const { category } = useParams();
-  console.log(category);
   const navigate = useNavigate();
+
   const [categoryId, setCategoryId] = useState(category);
-  console.log(categoryId);
   const [data, setData] = useState(null);
+  const [cateData, setCateData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const meatItems = data?.filter((items) => items.category_id === 1);
-  const vegItems = data?.filter((items) => items.category_id === 2);
-  const breadItems = data?.filter((items) => items.category_id === 3);
-  const frozenItems = data?.filter((items) => items.category_id === 4);
-
-  useEffect(() => {
-    setTimeout(1000);
+  const handleCatChange = useCallback(() => {
     getData();
-    setIsLoading(true);
-    if (handleCatChange) {
-      handleCatChange();
-    }
-  }, [categoryId, category]);
-
-  const getData = () => {
-    setIsLoading(true);
-    ApiService.GET("/products/", { skip: 0, limit: 100 })
-      .then((response) => {
-        setData(response);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-      });
-  };
-
-  const handleCatChange = () => {
-    setIsLoading(true);
+    navigate(`/product/${categoryId}`);
     switch (categoryId) {
       case 1:
         setData(meatItems);
@@ -63,12 +37,37 @@ const ProductPage = memo(() => {
       default:
         setData(data);
     }
-    navigate(`/product/${categoryId}`);
+  }, []);
 
+  console.log(data);
+  useEffect(() => {
+    getData();
+  }, [categoryId]);
+
+  const meatItems = data?.filter((items) => items.category_id === 1);
+  const vegItems = data?.filter((items) => items.category_id === 2);
+  const breadItems = data?.filter((items) => items.category_id === 3);
+  console.log(breadItems);
+  const frozenItems = data?.filter((items) => items.category_id === 4);
+
+  const getData = () => {
+    setIsLoading(true);
+    ApiService.GET("/products/", { skip: 0, limit: 100 })
+      .then((response) => {
+        setData(response);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-  };
+  }, [data]);
 
   return (
     <div>
@@ -79,6 +78,7 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(0);
+              handleCatChange();
             }}
           >
             All
@@ -86,10 +86,8 @@ const ProductPage = memo(() => {
           <div
             className="category"
             onClick={() => {
-              // setIsLoading(true);
               setCategoryId(3);
-              // setTimeout(2000);
-              // setIsLoading(false);
+              handleCatChange();
             }}
           >
             Bread and Bakery
@@ -98,6 +96,7 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(4);
+              handleCatChange();
             }}
           >
             Frozen Food
@@ -106,6 +105,7 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(1);
+              handleCatChange();
             }}
           >
             Meat
@@ -114,6 +114,7 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(2);
+              handleCatChange();
             }}
           >
             Vegetables

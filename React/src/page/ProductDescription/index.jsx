@@ -7,15 +7,24 @@ import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
 import { useParams } from "react-router";
 import ApiService from "../../services/api_services";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-const ProductDescription = memo((props) => {
+const ProductDescription = memo(() => {
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (getProduct) {
       getProduct();
     }
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
   }, []);
 
   const getProduct = () => {
@@ -35,7 +44,9 @@ const ProductDescription = memo((props) => {
         <div className="breadCrumbProductDescription">
           <Link to={"/catalog"}>Meat</Link> <span>|</span> <Link to={"/catalog"}>Pork</Link>
         </div>
-        {data ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : data ? (
           <div className="itemDescriptionContainer">
             <div className="productImageContainer">
               <div className="allSubProductImage">
