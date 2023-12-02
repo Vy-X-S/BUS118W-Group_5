@@ -1,8 +1,9 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import AddToCartButton from "../../components/AddToCart/AddToCartButton";
 import "./ProductDescription.css";
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ProductDescription = () => {
@@ -40,14 +41,15 @@ const ProductDescription = () => {
   if (!productDetails) return <div>Product not found</div>;
 
   // Destructure the necessary details from productDetails
-  const { product, images, nutrition, category_name, sub_category_name } = productDetails;
+  const { product, images, nutrition, category_name, sub_category_name, category_id /*subcategory_id*/ } = productDetails;
 
   return (
     <div>
       <Header />
       <div className="containerProductDescription">
         <div className="breadCrumbProductDescription">
-          {category_name} | {sub_category_name} | {product.product_name}
+          <Link to={`/categories/${category_id}`}>{category_name}</Link> |
+          {sub_category_name} | {product.product_name}
         </div>
         <div className="itemDescriptionContainer">
 
@@ -67,11 +69,17 @@ const ProductDescription = () => {
           </div>
 
           <div className="itemDetails">
+
             <p className="productName">{product.product_name}</p>
+
             <div className="lineProductDescription"></div>
+
             <p className="price">${product.price}/ea</p>
+
             <p className="in_stock">{product.inventory_count > 0 ? "In Stock" : "Out of Stock"}</p>
-            <button className="addToCartButton">Add To Cart</button>
+
+            <AddToCartButton product={product} />
+
             <div className="deliOptions">
               <div className="option">
                 <p>Pick Up</p>

@@ -1,23 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ProductTile.css';
+import AddToCartButton from '../AddToCart/AddToCartButton';
 
 const ProductTile = ({ product }) => {
+  const navigate  = useNavigate();
   const productLink = `/products/${product.product_id}`;
+  
+  const navigateToProductPage = () => {
+    navigate(productLink)
+  }
 
   return (
-    <Link to={productLink} className="productTileLink">
-    <div className="productTile">
+    <div className="productTile" onClick={navigateToProductPage}>
       <img src={product.main_image_url} alt={product.product_name} className='productImage' />
       <div className='info-container'>
         <h3 className="productName">{product.product_name}</h3>
         <p className="productPrice">${product.price}</p>
         {product.inventory_count < 25 && <p className="lowStock">Low Stock</p>}
-        <button className="addToCart">Add To Cart</button>
+        <AddToCartButton product={product} />
       </div>
     </div>
-    </Link>
-  )
+  );
 };
 
 export default ProductTile;

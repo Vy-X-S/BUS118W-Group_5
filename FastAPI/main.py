@@ -90,7 +90,9 @@ class ProductDetailModel(BaseModel):
    product: ProductModel
    images: List[ProductImageModel]
    nutrition: Optional[NutritionModel]
+   category_id: int
    category_name: str
+   subcategory_id: int
    sub_category_name: str
 class SubCategoryWithProducts(BaseModel):
    subcategory_id: int
@@ -228,29 +230,38 @@ def create_product_image(product_id: int, image: ProductImageCreate, db: Session
 # =============== for individual Product Page =============================
 @app.get("/api/products/{product_id}", response_model=ProductDetailModel)
 def get_product_details(product_id: int = Path(..., description="The ID of the product to retrieve"), db: Session = Depends(get_db)):
-   # Query the database to get the product, its images, nutrition data, and category/subcategory names
+   # Query the database to get the product details including main_image_url
    result = db.query(
-      models.Product,
-      models.Category.category_name.label('category_name'),
-      models.SubCategory.sb_category_name.label('sub_category_name')
+       models.Product,
+       models.Category.category_name.label('category_name'),
+       models.Category.category_id.label('category_id'),
+       models.SubCategory.sb_category_name.label('sub_category_name'),
+       models.SubCategory.sb_category_id.label('subcategory_id')
    ).join(
-      models.Category, models.Category.category_id == models.Product.category_id
+       models.Category, models.Category.category_id == models.Product.category_id
    ).join(
-      models.SubCategory, models.SubCategory.sb_category_id == models.Product.subcategory_id
+       models.SubCategory, models.SubCategory.sb_category_id == models.Product.subcategory_id
    ).filter(
-      models.Product.product_id == product_id
+       models.Product.product_id == product_id
    ).first()
 
    if not result:
       raise HTTPException(status_code=404, detail="Product not found")
 
-   product, category_name, sub_category_name = result
+   # Unpack the result, including main_image_url
+   product, category_name, category_id, sub_category_name, subcategory_id = result
 
-   images = db.query(models.ProductImage).filter(models.ProductImage.product_id == product_id).all()
+   # Query for all matching Images and Nutrition
+   images = db.query(models.ProductImage).filter(models.ProductImage.product_id == product_id).order_by(models.ProductImage.image_sequence).all()
    nutrition = db.query(models.Nutrition).filter(models.Nutrition.product_id == product_id).first()
 
-   # Convert SQLAlchemy objects to dictionaries and then to Pydantic models
+   # Set main_image_url to the URL of the first image in the list, if available
+   main_image_url = images[0].image_URL if images else None
+
+   # Include main_image_url in the product dictionary
    product_dict = {column.name: getattr(product, column.name) for column in models.Product.__table__.columns}
+   product_dict['main_image_url'] = main_image_url
+
    images_models = [ProductImageModel(**{column.name: getattr(image, column.name) for column in image.__table__.columns}) for image in images]
    nutrition_model = NutritionModel(**{column.name: getattr(nutrition, column.name) for column in nutrition.__table__.columns}) if nutrition else None
 
@@ -258,9 +269,12 @@ def get_product_details(product_id: int = Path(..., description="The ID of the p
       product=ProductModel(**product_dict),
       images=images_models,
       nutrition=nutrition_model,
+      category_id=category_id,
       category_name=category_name,
+      subcategory_id=subcategory_id,
       sub_category_name=sub_category_name
    )
+
 
 # =============== for individual subcategory Page show all products =============================
 @app.get("/api/categories/{category_id}/subcategories/", response_model=List[SubCategoryWithProducts])
@@ -281,20 +295,20 @@ def get_subcategories_with_products(category_id: int, db: Session = Depends(get_
         for product in products:
             # Get the main image (image_sequence = 0)
             main_image = db.query(models.ProductImage).filter(
-                models.ProductImage.product_id == product.product_id,
-                models.ProductImage.image_sequence == 0
+               models.ProductImage.product_id == product.product_id,
+               models.ProductImage.image_sequence == 0
             ).first()
 
             # Convert to Pydantic models
             product_model = ProductModel(
-                product_id=product.product_id,
-                product_name=product.product_name,
-                inventory_count=product.inventory_count,
-                description=product.description,
-                price=product.price,
-                category_id=product.category_id,
-                subcategory_id=product.subcategory_id,
-                main_image_url=main_image.image_URL if main_image else None
+               product_id=product.product_id,
+               product_name=product.product_name,
+               inventory_count=product.inventory_count,
+               description=product.description,
+               price=product.price,
+               category_id=product.category_id,
+               subcategory_id=product.subcategory_id,
+               main_image_url=main_image.image_URL if main_image else None
             )
 
             products_with_images.append(product_model)

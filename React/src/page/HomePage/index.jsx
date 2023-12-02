@@ -2,7 +2,6 @@ import { memo } from "react"
 import Footer from "../../components/Footer/Footer"
 import Header from "../../components/Header/Header"
 import "./Home_Page.css"
-import { Link } from 'react-router-dom';
 
 
 const HomePage = memo(()=>{
@@ -56,11 +55,6 @@ const HomePage = memo(()=>{
       <div className="item"></div>
       <div className="item"></div>
     </div>
-  </div>
-
-  <div>
-    <Link to="/products/1">View Product 1</Link>
-    <Link to="/catalog/1">View Category 1</Link>
   </div>
 
 </div>

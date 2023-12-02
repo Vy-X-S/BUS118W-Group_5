@@ -1,5 +1,4 @@
-// Header.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Header.css';
 import {Link} from "react-router-dom";
 
@@ -7,18 +6,36 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const [isHovered, setIsHovered] = useState(null);
     const foodCategories = ['Meat', 'Seafood', 'Vegetables'];
+    const [ cartCount, setCartCount ] = useState(0);
+
+    useEffect(() => {
+        // Function to calculate Cart items
+        const calculateCartCount = () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            setCartCount(count);
+        };
+
+        // Initialize cart count
+        calculateCartCount();
+
+        // Event listener for cart updates
+        const handleCartUpdate = () => calculateCartCount();
+        window.addEventListener('cartUpdated', handleCartUpdate);
+
+        // Cleanup
+        return () => window.removeEventListener('cartUpdated', handleCartUpdate);
+    }, []);
 
     const renderSubCategories = (categories) => {
-        if (!categories) return null;
-
-        return (
+        return categories ? (
             <div className='subcategories'>
                 {categories.map((cat, idx) => (
-                    <a key={idx} href={`/${cat.toLowerCase()}`}>{cat}</a>
+                    <Link key={idx} to={`/${cat.toLowerCase()}`}>{cat}</Link>
                 ))}
             </div>
-        );
-    }
+        ) : null;
+    };    
 
     const [hideTimeout, setHideTimeout] = useState(null);
 
@@ -43,7 +60,7 @@ const Header = () => {
             <div className="top-section">
                 <div className='logo-section'>
                     {/*<img src='' alt='The Grocery Co.'/>*/}
-                    <h1>The Grocery Co.</h1>
+                    <Link to="/home"><h1>The Grocery Co.</h1></Link>
                 </div>
 
                 <div className='search-section'>
@@ -62,9 +79,11 @@ const Header = () => {
                         </div>
                     </div>
 
+                    <Link to="/cart">
                     <div className='cart-section'>
-                    🛒
+                        🛒 {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                     </div>
+                    </Link>
                 </div>
 
                 
@@ -77,8 +96,8 @@ const Header = () => {
                 >
                     <ul>
                         <li><Link to="/product">All</Link></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href='#'>Food</a></li>
+                        <li>Weekly Deals</li>
+                        <li>Food</li>
                     </ul>
                     {isHovered === 'food' && renderSubCategories(foodCategories)}
                 </div>

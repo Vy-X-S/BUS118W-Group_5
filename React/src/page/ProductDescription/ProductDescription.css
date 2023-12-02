@@ -12,6 +12,10 @@
   font-size: 15px;
   margin-right: auto;
 }
+.breadCrumbProductDescription a {
+  text-decoration: none;
+  color: var(--accent-blue);
+}
 
 .itemDescriptionContainer {
   position: relative;
@@ -86,7 +90,7 @@
   margin-top: 40px;
 }
 
-.addToCartButton {
+.itemDetails .addToCartButton {
   color: #fff;
   font-size: 15px;
   width: 60%;

@@ -10,6 +10,7 @@
   width: 150px;
   text-align: center;
   background-color: white;
+  cursor: pointer;
 }
 
 .productTile .productImage {
@@ -36,7 +37,7 @@
   margin-bottom: 25px;
 }
 
-.info-container .addToCart {
+.info-container .addToCartButton {
   background-color: var(--accent-orange);
   border: none;
   padding: 5px;
@@ -44,6 +45,12 @@
   width: 100%;
   cursor: pointer;
   color: white;
+  height: 30px; /* Overwrite the ProductDesc CSS */
+}
+.addToCartButton:focus::after {
+  background-color: #ddd;
+  background-color: var(--success-color);
+  content: ' ✔️';
 }
 
 .productTileLink {
