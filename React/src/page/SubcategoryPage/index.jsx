@@ -20,6 +20,7 @@ const SubcategoryPage = ({ match }) => {
         const response = await axios.get(`http://localhost:8000/api/categories/${categoryId}/subcategories/`);
         //console.log(response.data);
         setCategoryDetails(response.data);
+        console.log(response.data)
       } catch(err) {
         console.error(err);
         setError(err);

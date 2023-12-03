@@ -19,8 +19,8 @@ const AddToCartButton = ({ product }) => {
     localStorage.setItem("cart", JSON.stringify(currentCart));
 
     // Dispatch custom event after update cart
-    const event = new Event('cartUpdated');
-    window.dispatchEvent(event);
+    // const event = new Event('cartUpdated');
+    // window.dispatchEvent(event);
   };
 
   return (

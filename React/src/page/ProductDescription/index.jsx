@@ -52,7 +52,6 @@ const ProductDescription = () => {
           {sub_category_name} | {product.product_name}
         </div>
         <div className="itemDescriptionContainer">
-
           <div className="imageSidebar">
             {images.map((image, index) => (
               <img
