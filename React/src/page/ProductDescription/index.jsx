@@ -75,7 +75,7 @@ const ProductDescription = memo(() => {
               <p className="nutritionTitle">Nutrition Information</p>
               <hr />
               <div className="nutritionInfo">
-                <p>15.0 Servings per container | 2bsp (30g)</p>
+                <p className="serving">15.0 Servings per container | 2bsp (30g)</p>
                 <div className="nutritionDetail">
                   <div className="macro">
                     <b>10</b>
