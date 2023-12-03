@@ -234,7 +234,7 @@ def create_product_image(product_id: int, image: ProductImageCreate, db: Session
 
 # CONTEXTUAL INDIVIDUAL CALLS
 
-# =============== for individual subcategory Page show all products =============================
+# =============== for individual category Page show all products =============================
 @app.get("/api/categories/{category_id}/subcategories/", response_model=List[SubCategoryWithProducts])
 def get_subcategories_with_products(category_id: int, db: Session = Depends(get_db)):
     subcategories = db.query(

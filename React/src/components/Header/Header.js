@@ -4,20 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Header = () => {
-    const [isHovered, setIsHovered] = useState(null);
-    const foodCategories = ['Meat', 'Seafood', 'Vegetables'];
     const [ cartCount, setCartCount ] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
-    const handleSearch = (event) => {
+    const handleSearch = (event) => { // Product search redirect
         event.preventDefault();
         if (searchQuery.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
         }
     };
 
-    useEffect(() => {
+    useEffect(() => { // Global cart awareness
         // Function to calculate Cart items
         const calculateCartCount = () => {
             const cart = JSON.parse(localStorage.getItem('cart')) ?? [];
@@ -35,34 +33,6 @@ const Header = () => {
         // Cleanup
         return () => window.removeEventListener('cartUpdated', handleCartUpdate);
     }, []);
-
-    const renderSubCategories = (categories) => {
-        return categories ? (
-            <div className='subcategories'>
-                {categories.map((cat, idx) => (
-                    <Link key={idx} to={`/${cat.toLowerCase()}`}>{cat}</Link>
-                ))}
-            </div>
-        ) : null;
-    };    
-
-    const [hideTimeout, setHideTimeout] = useState(null);
-
-    const handleMouseLeave = () => {
-        const timeout = setTimeout(() => {
-            setIsHovered(null);
-        }, 300); // 300ms delay
-        setHideTimeout(timeout);
-    }
-
-    const handleMouseEnter = () => {
-        if (hideTimeout) {
-            clearTimeout(hideTimeout);
-            setHideTimeout(null);
-        }
-        setIsHovered('food');
-    }
-
 
     return (
         <header className='header'>
@@ -104,16 +74,12 @@ const Header = () => {
             </div>
 
             <nav>
-                <div
-                    onMouseEnter={() => handleMouseEnter()}
-                    onMouseLeave={()=> handleMouseLeave()}
-                >
+                <div>
                     <ul>
-                        <li><Link to="/product">All</Link></li>
-                        <li>Weekly Deals</li>
-                        <li>Food</li>
+                        <li><Link to="/categories/1">Meat</Link></li>
+                        <li><Link to="/categories/2">Bread & Bakery</Link></li>
+                        <li><Link to="/categories/3">Fruits</Link></li>
                     </ul>
-                    {isHovered === 'food' && renderSubCategories(foodCategories)}
                 </div>
             </nav>
         </header>
