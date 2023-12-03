@@ -6,7 +6,6 @@ import productImage from "../../images/productDemoImg.png";
 import ItemContainer from "../../components/ItemContainer/ItemContainer";
 import { useNavigate } from "react-router";
 import ApiService from "../../services/api_services";
-// import dataSet from "../../dataSet/dataSet";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const ProductPage = memo(() => {
@@ -133,7 +132,7 @@ const ProductPage = memo(() => {
               </p>
               {data ? (
                 <div className="itemList">
-                  {vegItems?.splice(0, 4).map((item, key) => {
+                  {vegItems?.splice(0, 8).map((item, key) => {
                     return item?.category_id === 2 ? (
                       <ItemContainer
                         product={item}
@@ -161,7 +160,7 @@ const ProductPage = memo(() => {
               </p>
               {data ? (
                 <div className="itemList">
-                  {breadItems?.splice(0, 4).map((item, key) => {
+                  {breadItems?.splice(0, 8).map((item, key) => {
                     return item?.category_id === 3 ? (
                       <ItemContainer
                         product={item}
@@ -189,7 +188,7 @@ const ProductPage = memo(() => {
               </p>
               {data ? (
                 <div className="itemList">
-                  {frozenItems?.splice(0, 4).map((item, key) => {
+                  {frozenItems?.splice(0, 8).map((item, key) => {
                     return item?.category_id === 4 ? (
                       <ItemContainer
                         product={item}
