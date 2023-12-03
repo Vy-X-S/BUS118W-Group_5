@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header"
 import "./About_Page.css";
 import AboutImage from "../../images/fruitbasket.png";
 
+
 const AboutPage = memo(() => {
     return (
         <div>

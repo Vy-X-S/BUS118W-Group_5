@@ -1,13 +1,19 @@
 import React  from 'react';
 import './Footer.css';
+import { useNavigate } from 'react-router';
+
 
 function Footer() {
+    const navigate = useNavigate();
+    const toAbout = ()=>{
+        navigate("/about")
+    }
     return (
         <div className="footer">
             <h1>The Grocery Co.</h1>
             <div className="footer-container">
                 <div className="footer-section">
-                    <h4>About Us</h4>
+                    <h4 onClick={toAbout}>About Us</h4>
                     <ul>
                         <li><a href="#">Our Story</a></li>
                         <li><a href="#">Team</a></li>

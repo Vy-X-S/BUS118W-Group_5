@@ -54,6 +54,17 @@ const ProductPage = memo(() => {
       .finally(() => setIsLoading(false));
   };
 
+  // const getImage = () => {
+  //   ApiService.GET("/products/", { skip: 0, limit: 100 })
+  //     .then((response) => {
+  //       setData(categoryId === 0 ? response : response?.filter((items) => items?.category_id === categoryId));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // };
+
   return (
     <div>
       <Header />
