@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
@@ -14,20 +14,7 @@ const ProductDescription = memo(() => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (getProduct) {
-      getProduct();
-    }
-  }, []);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, []);
-
-  const getProduct = () => {
+  const getProduct = useCallback(() => {
     ApiService.GET("/products/", { skip: id - 1, limit: 1 })
       .then((response) => {
         setData(response);
@@ -35,7 +22,20 @@ const ProductDescription = memo(() => {
       .catch((error) => {
         console.log(error);
       });
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (getProduct) {
+      getProduct();
+    }
+  }, [getProduct]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
 
   return (
     <div>

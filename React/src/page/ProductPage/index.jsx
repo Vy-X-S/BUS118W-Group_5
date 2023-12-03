@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import "./ProductPage.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
@@ -13,60 +13,46 @@ const ProductPage = memo(() => {
   const { category } = useParams();
   const navigate = useNavigate();
 
-  const [categoryId, setCategoryId] = useState(category);
+  const [categoryId, setCategoryId] = useState(null);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCatChange = useCallback(() => {
-    getData();
-    navigate(`/product/${categoryId}`);
-    switch (categoryId) {
-      case 1:
-        setData(meatItems);
-        break;
-      case 2:
-        setData(vegItems);
-        break;
-      case 3:
-        setData(breadItems);
-        break;
-      case 4:
-        setData(frozenItems);
-        break;
-      default:
-        setData(data);
-    }
-  }, []);
-
-  console.log(data);
+  // chay khi moi vao trang
   useEffect(() => {
-    getData();
-  }, [categoryId]);
+    if (category) {
+      getData(+category);
+    }
+  }, [category]);
 
-  const meatItems = data?.filter((items) => items.category_id === 1);
-  const vegItems = data?.filter((items) => items.category_id === 2);
-  const breadItems = data?.filter((items) => items.category_id === 3);
-  const frozenItems = data?.filter((items) => items.category_id === 4);
-  // console.log(breadItems);
+  // chi chay khi Nguyen select category tu sidebar
+  useEffect(() => {
+    if (categoryId !== null && navigate) {
+      navigate(`/product/${categoryId}`);
+    }
+  }, [categoryId, navigate]);
 
-  const getData = () => {
+  useEffect(() => {
+    setIsLoading(true);
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [data]);
+
+  const getData = (categoryId) => {
     setIsLoading(true);
     ApiService.GET("/products/", { skip: 0, limit: 100 })
       .then((response) => {
-        setData(response);
-        setIsLoading(false);
+        setData(categoryId === 0 ? response : response?.filter((items) => items?.category_id === categoryId));
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [data]);
 
   return (
     <div>
@@ -77,7 +63,6 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(0);
-              handleCatChange();
             }}
           >
             All
@@ -86,7 +71,6 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(3);
-              handleCatChange();
             }}
           >
             Bread and Bakery
@@ -95,7 +79,6 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(4);
-              handleCatChange();
             }}
           >
             Frozen Food
@@ -104,7 +87,6 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(1);
-              handleCatChange();
             }}
           >
             Meat
@@ -113,7 +95,6 @@ const ProductPage = memo(() => {
             className="category"
             onClick={() => {
               setCategoryId(2);
-              handleCatChange();
             }}
           >
             Vegetables
