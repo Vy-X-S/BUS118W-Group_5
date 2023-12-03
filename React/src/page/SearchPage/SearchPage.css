@@ -1,0 +1,48 @@
+.tiles-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 10px; 
+}
+
+.filter-sidebar {
+  width: 25%;
+  background-color: white;
+  margin-right: 25px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.filter-sidebar input {
+  width: 50px;
+  margin-right: 5px;
+}
+.filter-sidebar .price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.results-container {
+  flex-grow: 2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.pagination button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.primary-container {
+  justify-content: left;
+  height: 100vh;
+}

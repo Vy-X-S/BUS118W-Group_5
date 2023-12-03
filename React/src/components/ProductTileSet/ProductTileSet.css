@@ -1,0 +1,31 @@
+.productTiles {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  justify-content: left;
+  width: 100%;
+}
+
+.productTileSet {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 5px;
+  background-color: white;
+}
+
+.tile-pagination {
+  border: none;
+  background-color: var(--dark-green);
+  color: white;
+  height: 50px;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tile-pagination:disabled {
+  background-color: transparent;
+  color: transparent;
+}
