@@ -21,7 +21,7 @@ const ProductPage = memo(() => {
     if (category) {
       getData(+category);
     }
-    console.log(category)
+    console.log(category);
   }, [category]);
 
   // chi chay khi Nguyen select category tu sidebar
@@ -103,15 +103,15 @@ const ProductPage = memo(() => {
         <div className="productContainer">
           <div className="productBreadCrumb">
             <div className="mainCat">
-              {category === '1'
+              {category === "1"
                 ? "Meat"
-                : category === '3'
+                : category === "3"
                 ? "Vegetables"
-                : category === '2'
+                : category === "2"
                 ? "Bread and Bakery"
-                : category === '4'
+                : category === "4"
                 ? "Frozen Food"
-                : category === '0'
+                : category === "0"
                 ? "All"
                 : ""}
             </div>
@@ -120,7 +120,7 @@ const ProductPage = memo(() => {
           </div>
           {isLoading ? (
             <LoadingSpinner></LoadingSpinner>
-          ) : (
+          ) : data ? (
             <div className="itemListContainer">
               {data?.map((item, key) => {
                 return (
@@ -135,6 +135,8 @@ const ProductPage = memo(() => {
                 );
               })}
             </div>
+          ) : (
+            "No product Available."
           )}
         </div>
       </div>
