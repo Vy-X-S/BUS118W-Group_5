@@ -36,7 +36,7 @@ dl, dt, dd, ol, ul, li, fieldset, form, table, caption {
     background-color: var(--offwhite);
     display: flex;
     flex-direction: column;
-    height: 200vh;
+    /* height: 200vh; */
     min-height: 100vh;
     margin: 0;
 }
