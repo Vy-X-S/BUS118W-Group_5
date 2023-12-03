@@ -5,7 +5,7 @@ category_endpoint = "http://127.0.0.1:8000/categories"
 subcategory_endpoint = "http://127.0.0.1:8000/subcategories"
 
 # Define your categories
-categories = ["Meats", "Bread and Bakery", "Fruit"]
+categories = ["Meats", "Bread and Bakery", "Fruits"]
 
 # Function to create a category
 def create_category(name):
@@ -29,8 +29,8 @@ category_ids = {name: create_category(name) for name in categories}
 # Define your subcategories with the corresponding category IDs
 subcategories = {
     1: ["Beef", "Seafood", "Pork"],            # 'Meats' has category_id 1
-    2: ["Cookies", "Cake", "Pastries", "Bread"], # 'Bread and Bakery' has category_id 3
-    3: ["Fresh Fruits"]                         # 'Fruit' has category_id 4
+    2: ["Cookies", "Cakes", "Pastries", "Breads"], # 'Bread and Bakery' has category_id 3
+    3: ["Fresh Fruits"]                         # 'Fruits' has category_id 4
 }
 
 # Function to create a subcategory

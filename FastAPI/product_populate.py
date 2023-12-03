@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Let"s load the CSV file again to examine its structure and prepare for product creation.
-csv_file_path = "./BUS118W_Products_-_Products.csv"
+csv_file_path = "C:/Users/Darling/Desktop/BUS118W Products - Products.csv"
 df = pd.read_csv(csv_file_path)
 
 import random
@@ -18,9 +18,9 @@ subcategory_mapping = {
     "Seafood": 2,
     "Pork": 3,
     "Cookies": 4,
-    "Cake": 5,
+    "Cakes": 5,
     "Pastries": 6,
-    "Bread": 7,
+    "Breads": 7,
     "Fresh Fruits": 8
 }
 
@@ -52,7 +52,7 @@ df["fiber"] = df["fiber"].astype(int)
 df["sugar"] = df["sugar"].astype(int)
 
 # Map "Category" and "Subcategory" to their corresponding IDs
-df["category_id"] = df["Category"].map(lambda x: 1 if x == "Meat" else (2 if x == "Bread/Bakery" else 3))
+df["category_id"] = df["Category"].map(lambda x: 1 if x == "Meat" else (2 if x == "Bread and Bakery" else 3))
 df["subcategory_id"] = df["Subcategory"].map(subcategory_mapping.get)
 
 df["subcategory_id"] = df["subcategory_id"].fillna(0).astype(int)
