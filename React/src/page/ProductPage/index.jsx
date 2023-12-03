@@ -16,12 +16,12 @@ const ProductPage = memo(() => {
   const [categoryId, setCategoryId] = useState(null);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   // chay khi moi vao trang
   useEffect(() => {
     if (category) {
       getData(+category);
     }
+    console.log(category)
   }, [category]);
 
   // chi chay khi Nguyen select category tu sidebar
@@ -70,7 +70,7 @@ const ProductPage = memo(() => {
           <div
             className="category"
             onClick={() => {
-              setCategoryId(3);
+              setCategoryId(2);
             }}
           >
             Bread and Bakery
@@ -94,7 +94,7 @@ const ProductPage = memo(() => {
           <div
             className="category"
             onClick={() => {
-              setCategoryId(2);
+              setCategoryId(3);
             }}
           >
             Vegetables
@@ -103,15 +103,17 @@ const ProductPage = memo(() => {
         <div className="productContainer">
           <div className="productBreadCrumb">
             <div className="mainCat">
-              {categoryId === 1
+              {category === '1'
                 ? "Meat"
-                : categoryId === 2
+                : category === '3'
                 ? "Vegetables"
-                : categoryId === 3
+                : category === '2'
                 ? "Bread and Bakery"
-                : categoryId === 4
+                : category === '4'
                 ? "Frozen Food"
-                : "All"}
+                : category === '0'
+                ? "All"
+                : ""}
             </div>
             {/* <div className="line"></div>
             <div className="subCat">Pork</div> */}

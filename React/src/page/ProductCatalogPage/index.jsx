@@ -15,8 +15,8 @@ const ProductPage = memo(() => {
   const navigate = useNavigate();
 
   const meatItems = data?.filter((items) => items.category_id === 1);
-  const vegItems = data?.filter((items) => items.category_id === 2);
-  const breadItems = data?.filter((items) => items.category_id === 3);
+  const breadItems = data?.filter((items) => items.category_id === 2);
+  const vegItems = data?.filter((items) => items.category_id === 3);
   const frozenItems = data?.filter((items) => items.category_id === 4);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const ProductPage = memo(() => {
           <div
             className="category"
             onClick={() => {
-              handleCatChange(3);
+              handleCatChange(2);
             }}
           >
             Bread and Bakery
@@ -125,7 +125,7 @@ const ProductPage = memo(() => {
               <p
                 className="categoryTitle"
                 onClick={() => {
-                  handleCatChange(2);
+                  handleCatChange(3);
                 }}
               >
                 Vegetables
@@ -133,7 +133,7 @@ const ProductPage = memo(() => {
               {data ? (
                 <div className="itemList">
                   {vegItems?.splice(0, 8).map((item, key) => {
-                    return item?.category_id === 2 ? (
+                    return item?.category_id === 3 ? (
                       <ItemContainer
                         product={item}
                         id={item?.product_id}
@@ -153,7 +153,7 @@ const ProductPage = memo(() => {
               <p
                 className="categoryTitle"
                 onClick={() => {
-                  handleCatChange(3);
+                  handleCatChange(2);
                 }}
               >
                 Bread and Bakery
@@ -161,7 +161,7 @@ const ProductPage = memo(() => {
               {data ? (
                 <div className="itemList">
                   {breadItems?.splice(0, 8).map((item, key) => {
-                    return item?.category_id === 3 ? (
+                    return item?.category_id === 2 ? (
                       <ItemContainer
                         product={item}
                         id={item?.product_id}
