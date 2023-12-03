@@ -9,57 +9,11 @@ const HomePage = memo(()=>{
     <div>
       <Header />
 
-{/*CONTENT GOES HERE, temp for box*/}
-<div className="content-wrapper">
+      {/*CONTENT GOES HERE, temp for box*/}
+      <div className="content-wrapper">
+      </div>
 
-  {/* Optimize later with .map function */}
-  <div className="category">
-    <a href="#"><h1>Top Deals <span>View All</span></h1></a>
-    <div className="items-container">
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-    </div>
-  </div>
-
-  <div className="category">
-    <a href="#"><h1>What's in Season <span>View All</span></h1></a>
-    <div className="items-container">
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-    </div>
-  </div>
-
-  <div className="category">
-    <a href="#"><h1>Local Market Specials <span>View All</span></h1></a>
-    <div className="items-container">
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-    </div>
-  </div>
-
-  <div className="category">
-    <a href="#"><h1>Featured Items <span>View All</span></h1></a>
-    <div className="items-container">
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-    </div>
-  </div>
-
-</div>
-
-<Footer />
+      <Footer />
     </div>
   )
 })

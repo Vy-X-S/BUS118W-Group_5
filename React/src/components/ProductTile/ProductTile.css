@@ -48,8 +48,6 @@
   height: 30px; /* Overwrite the ProductDesc CSS */
 }
 .addToCartButton:focus::after {
-  background-color: #ddd;
-  background-color: var(--success-color);
   content: ' ✔️';
 }
 

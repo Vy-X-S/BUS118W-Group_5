@@ -8,6 +8,7 @@ import SubcategoryPage from './page/SubcategoryPage';
 import ProductDescription from './page/ProductDescription';
 import AboutPage from './page/AboutPage';
 import CartPage from './page/CartPage/CartPage';
+import SearchPage from './page/SearchPage/SearchPage';
 
 const AppRouter = () => {
   return (
@@ -20,7 +21,8 @@ const AppRouter = () => {
           <Route path="/categories/:categoryId" element={<SubcategoryPage />} />
           <Route path="/products/:productId" element={<ProductDescription />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/search" element={<SearchPage key={window.location.search} />} />
         </Routes>
       </CartProvider>
     </BrowserRouter>

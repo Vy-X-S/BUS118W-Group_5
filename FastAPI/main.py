@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Path, Depends
+from fastapi import FastAPI, HTTPException, Path, Depends, Query
 from typing import Annotated, List, Optional
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -54,6 +54,7 @@ class ProductModel(BaseModel):
 
    class Config:
       orm_mode = True
+      from_attributes = True
 class CategoryModel(BaseModel):
    category_id: int
    category_name: str
@@ -94,10 +95,16 @@ class ProductDetailModel(BaseModel):
    category_name: str
    subcategory_id: int
    sub_category_name: str
+class ProductSearchResponse(BaseModel):
+   products: List[ProductModel]
+   total: int
+   page: int
+   itemsPerPage: int
 class SubCategoryWithProducts(BaseModel):
    subcategory_id: int
    subcategory_name: str
    products: List[ProductModel]
+
 
 def get_db():
    db = SessionLocal()
@@ -227,6 +234,103 @@ def create_product_image(product_id: int, image: ProductImageCreate, db: Session
 
 # CONTEXTUAL INDIVIDUAL CALLS
 
+# =============== for individual subcategory Page show all products =============================
+@app.get("/api/categories/{category_id}/subcategories/", response_model=List[SubCategoryWithProducts])
+def get_subcategories_with_products(category_id: int, db: Session = Depends(get_db)):
+    subcategories = db.query(
+       models.SubCategory
+       ).filter(
+         models.SubCategory.category_id == category_id).all()
+    
+    if not subcategories:
+        raise HTTPException(status_code=404, detail="Category not found or no subcategories found")
+
+    result = []
+    for subcategory in subcategories:
+        products_with_images = []
+        products = db.query(models.Product).filter(models.Product.subcategory_id == subcategory.sb_category_id).all()
+
+        for product in products:
+            # Get the main image (image_sequence = 0)
+            main_image = db.query(models.ProductImage).filter(
+               models.ProductImage.product_id == product.product_id,
+               models.ProductImage.image_sequence == 0
+            ).first()
+
+            # Convert to Pydantic models
+            product_model = ProductModel(
+               product_id=product.product_id,
+               product_name=product.product_name,
+               inventory_count=product.inventory_count,
+               description=product.description,
+               price=product.price,
+               category_id=product.category_id,
+               subcategory_id=product.subcategory_id,
+               main_image_url=main_image.image_URL if main_image else None
+            )
+
+            products_with_images.append(product_model)
+
+        result.append(SubCategoryWithProducts(
+            subcategory_id=subcategory.sb_category_id,
+            subcategory_name=subcategory.sb_category_name,
+            products=products_with_images
+        ))
+
+    return result
+
+# =============== for product search =============================
+@app.get("/api/products/search", response_model=ProductSearchResponse)
+def search_products(query: str = Query(..., description="Search query string"),
+                    page: int = Query(1, description="Page number"),
+                    db: Session = Depends(get_db)):
+   items_per_page = 10
+   offset = (page - 1) * items_per_page
+
+   # Queries to include partial matches for categories and subcategories
+   product_query = db.query(models.Product)
+   category_query = db.query(models.Category).filter(models.Category.category_name.ilike(f'%{query}%'))
+   subcategory_query = db.query(models.SubCategory).filter(models.SubCategory.sb_category_name.ilike(f'%{query}%'))
+   product_query = db.query(models.Product, models.ProductImage.image_URL.label('main_image_url')).join(
+        models.ProductImage, 
+        (models.ProductImage.product_id == models.Product.product_id) & (models.ProductImage.image_sequence == 0),
+        isouter=True  # outer join to include products without images
+    )
+
+   category_match = category_query.first()
+   subcategory_match = subcategory_query.first()
+
+   if category_match:
+        product_query = product_query.filter(models.Product.category_id == category_match.category_id)
+   elif subcategory_match:
+        product_query = product_query.filter(models.Product.subcategory_id == subcategory_match.sb_category_id)
+   else:
+        product_query = product_query.filter(models.Product.product_name.ilike(f'%{query}%'))
+
+   # First, calculate the total count of the products matching the query
+   total_count = product_query.count()
+
+   # Apply pagination to the query
+   products = product_query.offset(offset).limit(items_per_page).all()
+
+   # Create ProductModel instances
+   product_models = [ProductModel(
+                        product_id=product.product_id, 
+                        product_name=product.product_name,
+                        inventory_count=product.inventory_count,
+                        description=product.description,
+                        price=product.price,
+                        category_id=product.category_id,
+                        subcategory_id=product.subcategory_id,
+                        main_image_url=main_image_url
+                     ) for product, main_image_url in products]
+
+   # Create ProductModel instances
+   return {"products": product_models,
+           "total": total_count,
+           "page": page,
+           "itemsPerPage": items_per_page}
+
 # =============== for individual Product Page =============================
 @app.get("/api/products/{product_id}", response_model=ProductDetailModel)
 def get_product_details(product_id: int = Path(..., description="The ID of the product to retrieve"), db: Session = Depends(get_db)):
@@ -274,52 +378,6 @@ def get_product_details(product_id: int = Path(..., description="The ID of the p
       subcategory_id=subcategory_id,
       sub_category_name=sub_category_name
    )
-
-
-# =============== for individual subcategory Page show all products =============================
-@app.get("/api/categories/{category_id}/subcategories/", response_model=List[SubCategoryWithProducts])
-def get_subcategories_with_products(category_id: int, db: Session = Depends(get_db)):
-    subcategories = db.query(
-       models.SubCategory
-       ).filter(
-         models.SubCategory.category_id == category_id).all()
-    
-    if not subcategories:
-        raise HTTPException(status_code=404, detail="Category not found or no subcategories found")
-
-    result = []
-    for subcategory in subcategories:
-        products_with_images = []
-        products = db.query(models.Product).filter(models.Product.subcategory_id == subcategory.sb_category_id).all()
-
-        for product in products:
-            # Get the main image (image_sequence = 0)
-            main_image = db.query(models.ProductImage).filter(
-               models.ProductImage.product_id == product.product_id,
-               models.ProductImage.image_sequence == 0
-            ).first()
-
-            # Convert to Pydantic models
-            product_model = ProductModel(
-               product_id=product.product_id,
-               product_name=product.product_name,
-               inventory_count=product.inventory_count,
-               description=product.description,
-               price=product.price,
-               category_id=product.category_id,
-               subcategory_id=product.subcategory_id,
-               main_image_url=main_image.image_URL if main_image else None
-            )
-
-            products_with_images.append(product_model)
-
-        result.append(SubCategoryWithProducts(
-            subcategory_id=subcategory.sb_category_id,
-            subcategory_name=subcategory.sb_category_name,
-            products=products_with_images
-        ))
-
-    return result
 
 @app.get("/")
 def read_root():

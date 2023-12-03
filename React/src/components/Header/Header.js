@@ -1,12 +1,21 @@
 import { useState, useEffect } from "react";
 import './Header.css';
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Header = () => {
     const [isHovered, setIsHovered] = useState(null);
     const foodCategories = ['Meat', 'Seafood', 'Vegetables'];
     const [ cartCount, setCartCount ] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+        }
+    };
 
     useEffect(() => {
         // Function to calculate Cart items
@@ -63,10 +72,15 @@ const Header = () => {
                     <Link to="/home"><h1>The Grocery Co.</h1></Link>
                 </div>
 
-                <div className='search-section'>
-                    <input type='text' placeholder='Search' />
-                    <button>🔍</button>
-                </div>
+                <form className='search-section' onSubmit={handleSearch}>
+                    <input 
+                    type='text' 
+                    placeholder='Search' 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <button type='submit'>🔍</button>
+                </form>
                 
                 <div className="top-right">
                     <div className='location-section'>
