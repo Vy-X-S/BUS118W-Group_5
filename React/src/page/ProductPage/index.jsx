@@ -15,7 +15,6 @@ const ProductPage = memo(() => {
 
   const [categoryId, setCategoryId] = useState(category);
   const [data, setData] = useState(null);
-  const [cateData, setCateData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCatChange = useCallback(() => {
@@ -47,8 +46,8 @@ const ProductPage = memo(() => {
   const meatItems = data?.filter((items) => items.category_id === 1);
   const vegItems = data?.filter((items) => items.category_id === 2);
   const breadItems = data?.filter((items) => items.category_id === 3);
-  console.log(breadItems);
   const frozenItems = data?.filter((items) => items.category_id === 4);
+  // console.log(breadItems);
 
   const getData = () => {
     setIsLoading(true);
