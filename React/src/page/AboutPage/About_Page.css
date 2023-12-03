@@ -7,75 +7,46 @@
     align-items: center;
 }
 
-.aboutheader {
+
+.aboutheader,
+.whoheader,
+.joinheader {
     max-width: 100%;
     position: relative;
     white-space: nowrap;
     text-align: center;
     display: flex;
-    margin: 100px auto;
+    margin: 20px auto;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 .aboutimage {
-    max-height: 490px;
-    max-width: 720px;
-    display: flex;
-    margin: -50px auto;
-
-}
-
-.aboutdescription{
-    font-weight: bold;
-    width: 50%;
-    font-size: 22px;
-    margin: 90px auto;
-    display: flex;
-    text-align: center;
-    position: relative;
-}
-
-.whoheader{
     max-width: 100%;
-    position: relative;
-    white-space: nowrap;
-    text-align: center;
-    display: flex;
-    margin: -50px auto;
-    text-decoration: underline;
-    font-weight: bold;
+    height: auto;
+    margin: 0 auto;
 }
 
-.whodescription{
+.aboutdescription,
+.whodescription,
+.joindescription {
     font-weight: bold;
-    width: 50%;
-    font-size: 22px;
-    margin: 90px auto;
-    display: flex;
+    width: 80%;
+    font-size: 18px;
+    margin: 20px auto;
     text-align: center;
     position: relative;
 }
 
-.joinheader{
-    max-width: 100%;
-    position: relative;
-    white-space: nowrap;
-    text-align: center;
-    display: flex;
-    margin: -50px auto;
-    text-decoration: underline;
-    font-weight: bold;
+@media only screen and (max-width: 600px) {
+
+    .container {
+        padding: 10px;
+    }
+    .aboutdescription,
+    .whodescription,
+    .joindescription {
+        width: 90%;
+        font-size: 16px;
+    }
 }
-
-.joindescription{
-    font-weight: bold;
-    width: 50%;
-    font-size: 22px;
-    margin: 90px auto;
-    display: flex;
-    text-align: center;
-    position: relative;
-}
-
-
-

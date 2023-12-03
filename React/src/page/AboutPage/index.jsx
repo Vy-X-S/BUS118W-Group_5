@@ -25,6 +25,9 @@ const AboutPage = memo(() => {
                 <h2 class="joinheader">Join Us On Our Journey</h2>
                 <p class="joindescription">We're excited to have you as part of the Grocery Co. community. Whether you're a busy professional, a parent on the go,
                     or simply someone who values convenience, we're here to make your life easier and your meals more delicious.🥞</p>
+                <br></br>
+                <br></br>
+                <br></br>
             </div>
             <Footer />
         </div>
