@@ -106,8 +106,8 @@ const CartPage = memo(() => {
                   <div key={key} className="cartProductInfo">
                     <img className="cartProductImage" src={productImage} alt="product" />
                     <div className="cartProductDescription">
-                      <div>{item.product_name}</div>
-                      <div>Brand</div>
+                      <div className="cartProductName">{item.product_name}</div>
+                      <div className="cartProductBrand">Brand</div>
                       <div className="cartAmount">
                         <div className="cartAmountAdjust">
                           <span
