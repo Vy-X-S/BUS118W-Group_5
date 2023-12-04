@@ -6,8 +6,7 @@ import ItemContainer from "../ItemContainer/ItemContainer";
 const ProductTileSet = ({ products }) => {
   const productsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
-
-  const [, refresh] = useState(null);
+  // const [, refresh] = useState(null);
   const maxPage = Math.ceil(products.length / productsPerPage) - 1;
 
   // useEffect(() => {
@@ -38,10 +37,11 @@ const ProductTileSet = ({ products }) => {
       </button>
       <div className="productTiles">
         {currentProducts.map((product) => {
-          return(
-          // <ProductTile key={product.product_id} product={product} />
-          <ItemContainer product={product} />
-        )})}
+          return (
+            // <ProductTile key={product.product_id} product={product} />
+            <ItemContainer product={product} />
+          );
+        })}
       </div>
       <button className="tile-pagination" onClick={handleNext} disabled={currentPage === maxPage}>
         &gt;

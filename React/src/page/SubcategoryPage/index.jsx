@@ -5,7 +5,7 @@ import "./SubcategoryPage.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import ProductTileSet from "../../components/ProductTileSet/ProductTileSet";
-import ProductTile from "../../components/ProductTile/ProductTile";
+// import ProductTile from "../../components/ProductTile/ProductTile";
 
 const SubcategoryPage = ({ match }) => {
   const { categoryId } = useParams();
