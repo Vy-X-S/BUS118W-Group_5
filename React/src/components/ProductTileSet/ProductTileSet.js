@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductTile from "../ProductTile/ProductTile";
 import "./ProductTileSet.css";
+import ItemContainer from "../ItemContainer/ItemContainer";
 
 const ProductTileSet = ({ products }) => {
   const productsPerPage = 4;
@@ -36,9 +37,11 @@ const ProductTileSet = ({ products }) => {
         &lt;
       </button>
       <div className="productTiles">
-        {currentProducts.map((product) => (
-          <ProductTile key={product.product_id} product={product} />
-        ))}
+        {currentProducts.map((product) => {
+          return(
+          // <ProductTile key={product.product_id} product={product} />
+          <ItemContainer product={product} />
+        )})}
       </div>
       <button className="tile-pagination" onClick={handleNext} disabled={currentPage === maxPage}>
         &gt;

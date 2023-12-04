@@ -1,5 +1,8 @@
 import { memo } from "react";
 import "./AddToCartButton.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AddToCartButton = memo(({ product }) => {
   const handleAddToCart = () => {
     const currentCart = JSON.parse(localStorage.getItem("cart")) ?? [];
@@ -11,7 +14,6 @@ const AddToCartButton = memo(({ product }) => {
         JSON.stringify(
           currentCart.map((item) => {
             if (item.product_id === product.product_id) {
-              console.log(item.quantity);
               return { ...item, quantity: item.quantity + 1 };
             }
             return item;
@@ -21,9 +23,20 @@ const AddToCartButton = memo(({ product }) => {
     } else {
       localStorage.setItem("cart", JSON.stringify(currentCart ? [...currentCart, { ...product, quantity: 1 }] : [{ ...product, quantity: 1 }]));
     }
+    updateUI();
+  };
 
-    // // Update the UI (you can implement your own logic here)
-    // // updateCartUI();
+  const updateUI = () => {
+    toast.success("Added to cart!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (

@@ -88,7 +88,7 @@ const CartPage = memo(() => {
   };
 
   return (
-    <div>
+    <div className="masterCartContainer">
       <Header />
       <div className="mainCartContainer">
         <div className="cartContainer">
@@ -104,10 +104,10 @@ const CartPage = memo(() => {
               {cart ? (
                 cart?.map((item, key) => (
                   <div key={key} className="cartProductInfo">
-                    <img className="cartProductImage" src={productImage} alt="product" />
+                    <img className="cartProductImage" src={item?.main_image_url} alt="product" />
                     <div className="cartProductDescription">
                       <div>{item.product_name}</div>
-                      <div>Brand</div>
+                      <div> </div>
                       <div className="cartAmount">
                         <div className="cartAmountAdjust">
                           <span
