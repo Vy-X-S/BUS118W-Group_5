@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import ProductTile from '../ProductTile/ProductTile';
-import './ProductTileSet.css';
+import React, { useState } from "react";
+import "./ProductTileSet.css";
+import ItemContainer from "../ItemContainer/ItemContainer";
 
 const ProductTileSet = ({ products }) => {
-  const productsPerPage = 4;
+  const productsPerPage = 7;
   const [currentPage, setCurrentPage] = useState(0);
+  // const [, refresh] = useState(null);
   const maxPage = Math.ceil(products.length / productsPerPage) - 1;
 
   const handleNext = () => {
@@ -15,20 +16,21 @@ const ProductTileSet = ({ products }) => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-  const currentProducts = products.slice(
-    currentPage * productsPerPage,
-    (currentPage + 1) * productsPerPage
-  );
+  const currentProducts = products.slice(currentPage * productsPerPage, (currentPage + 1) * productsPerPage);
 
   return (
     <div className="productTileSet">
-      <button className='tile-pagination' onClick={handlePrev} disabled={currentPage === 0}>&lt;</button>
+      <button className="tile-pagination" onClick={handlePrev} disabled={currentPage === 0}>
+        &lt;
+      </button>
       <div className="productTiles">
-        {currentProducts.map((product) => (
-          <ProductTile key={product.product_id} product={product} />
-        ))}
+        {currentProducts.map((product) => {
+          return <ItemContainer product={product} />;
+        })}
       </div>
-      <button className='tile-pagination' onClick={handleNext} disabled={currentPage === maxPage}>&gt;</button>
+      <button className="tile-pagination" onClick={handleNext} disabled={currentPage === maxPage}>
+        &gt;
+      </button>
     </div>
   );
 };

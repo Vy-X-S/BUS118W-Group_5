@@ -8,12 +8,20 @@
   --spacing-medium: 20px;
   --spacing-large: 40px;
 }
-
+.masterSubCatContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.mainContent {
+  min-height: calc(100vh - 251px - 85px);
+}
 /* Container for the entire product page */
 .containerProductPage {
   width: 100%;
-  height: 100%;
+  /* height: 100vh; */
   display: flex;
+  flex-grow: 1;
   flex-direction: row;
   justify-content: center;
   padding-bottom: var(--spacing-large);
@@ -82,4 +90,8 @@
 /* Container for tilesets */
 .tileset-container {
   padding: var(--spacing-small) var(--spacing-medium);
+  > h2 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
 }

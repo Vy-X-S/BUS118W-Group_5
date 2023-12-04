@@ -1,19 +1,25 @@
+
 .productTiles {
   display: flex;
   flex-direction: row;
   background-color: white;
-  justify-content: left;
+  justify-content: flex-start;
   width: 100%;
+  gap: 20px;
+  padding: 10px 20px;
 }
 
 .productTileSet {
+  height: auto;
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  padding: 5px;
+  padding: 25px;
   background-color: white;
+  gap: 15px;
 }
 
 .tile-pagination {
@@ -28,4 +34,44 @@
 .tile-pagination:disabled {
   background-color: transparent;
   color: transparent;
+}
+
+@media (max-width: 768px) {
+  .productTiles {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    width: auto;
+    gap: 20px;
+  }
+
+  .productTileSet {
+    display: flex;
+    flex-direction: column;
+    overflow: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    gap: 15px;
+  }
+
+  .tile-pagination {
+    display: flex;
+    border: none;
+    background-color: var(--dark-green);
+    color: white;
+    height: 20px;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+  }
+  .tile-pagination:disabled {
+    background-color: transparent;
+    color: transparent;
+  }
 }

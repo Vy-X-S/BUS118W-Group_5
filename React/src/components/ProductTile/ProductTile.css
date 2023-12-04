@@ -1,4 +1,4 @@
-.productTile {
+/* .productTile {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -22,16 +22,19 @@
 .info-container {
   width: 100%;
   position: relative;
-}
+} */
 
-.info-container .productName {
+/* .info-container .productName {
   font-size: 15px;
-  white-space: nowrap; /* Prevents the text from wrapping into multiple lines */
-  overflow: hidden; /* Ensures that the overflow text is hidden */
-  text-overflow: ellipsis; /* Adds an ellipsis (...) at the end of the text if it overflows */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
+/* Prevents the text from wrapping into multiple lines */
+/* Ensures that the overflow text is hidden */
+/* Adds an ellipsis (...) at the end of the text if it overflows */
 
-.info-container .productPrice {
+/* .info-container .productPrice {
   text-align: left;
   width: 100%;
   margin-bottom: 25px;
@@ -45,9 +48,10 @@
   width: 100%;
   cursor: pointer;
   color: white;
-  height: 30px; /* Overwrite the ProductDesc CSS */
-}
-.addToCartButton:focus::after {
+  height: 30px; 
+}  */
+/* Overwrite the ProductDesc CSS */
+/* .addToCartButton:focus::after {
   content: ' ✔️';
 }
 
@@ -65,4 +69,4 @@
   color: red; 
   font-weight: bold;
   height: 20px;
-}
+} */

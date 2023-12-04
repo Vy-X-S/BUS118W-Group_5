@@ -1,13 +1,15 @@
+
 .tiles-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: flex-start; 
   gap: 10px; 
+  padding-top: 20px;
 }
 
 .filter-sidebar {
-  width: 25%;
+  width: 15%;
   background-color: white;
   margin-right: 25px;
 
@@ -27,6 +29,9 @@
 
 .results-container {
   flex-grow: 2;
+  >p{
+    padding-top: 20px;
+  }
 }
 
 .pagination {
@@ -34,6 +39,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  padding-top: 20px;
 }
 .pagination button {
   background-color: transparent;
@@ -45,4 +51,5 @@
 .primary-container {
   justify-content: left;
   height: 100vh;
+  display: flex;
 }
