@@ -11,14 +11,15 @@
 .masterSubCatContainer {
   display: flex;
   flex-direction: column;
-  .mainContent {
-    flex-grow: 1;
-  }
+  flex: 1;
+}
+.mainContent {
+  min-height: calc(100vh - 251px - 85px);
 }
 /* Container for the entire product page */
 .containerProductPage {
   width: 100%;
-  /* height: 100%; */
+  /* height: 100vh; */
   display: flex;
   flex-grow: 1;
   flex-direction: row;

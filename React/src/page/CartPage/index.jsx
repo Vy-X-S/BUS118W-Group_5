@@ -2,8 +2,8 @@ import { memo, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./CartPage.css";
-import productImage from "../../images/productDemoImg.png";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CartPage = memo(() => {
   const navigate = useNavigate();
@@ -87,82 +87,89 @@ const CartPage = memo(() => {
     setIsAmountChange(false);
   };
 
+  const onCheckOut = () => {
+    toast.success("Check out Successfully!");
+    handleClearCart();
+  };
+
   return (
     <div className="masterCartContainer">
       <Header />
       <div className="mainCartContainer">
         <div className="cartContainer">
-        <div className="cartTitle">Grocery Cart</div>
-        <div className="cartInfoContainer">
-          <div className="cartProduct">
-            <div className="line1"></div>
-            <div className="clearCartButton" onClick={handleClearCart}>
-              Clear cart
-            </div>
-            <div className="line2"> </div>
-            <div className="cartProductInfoContainer">
-              {cart ? (
-                cart?.map((item, key) => (
-                  <div key={key} className="cartProductInfo">
-                    <img className="cartProductImage" src={item?.main_image_url} alt="product" />
-                    <div className="cartProductDescription">
-                      <div>{item.product_name}</div>
-                      <div> </div>
-                      <div className="cartAmount">
-                        <div className="cartAmountAdjust">
-                          <span
-                            className="adjustAmount"
-                            onClick={() => {
-                              handleSubtractAmount(item?.product_id);
-                            }}
-                          >
-                            -
-                          </span>
-                          {item?.quantity}
-                          <span className="adjustAmount" onClick={() => handleAddAmount(item?.product_id)}>
-                            +
-                          </span>
-                        </div>
-                        <div className="itemDeleteButton" onClick={() => handleDeleteItem(item?.product_id)}>
-                          Delete
+          <div className="cartTitle">Grocery Cart</div>
+          <div className="cartInfoContainer">
+            <div className="cartProduct">
+              <div className="line1"></div>
+              <div className="clearCartButton" onClick={handleClearCart}>
+                Clear cart
+              </div>
+              <div className="line2"> </div>
+              <div className="cartProductInfoContainer">
+                {cart ? (
+                  cart?.map((item, key) => (
+                    <div key={key} className="cartProductInfo">
+                      <img className="cartProductImage" src={item?.main_image_url} alt="product" />
+                      <div className="cartProductDescription">
+                        <div>{item.product_name}</div>
+                        <div> </div>
+                        <div className="cartAmount">
+                          <div className="cartAmountAdjust">
+                            <span
+                              className="adjustAmount"
+                              onClick={() => {
+                                handleSubtractAmount(item?.product_id);
+                              }}
+                            >
+                              -
+                            </span>
+                            {item?.quantity}
+                            <span className="adjustAmount" onClick={() => handleAddAmount(item?.product_id)}>
+                              +
+                            </span>
+                          </div>
+                          <div className="itemDeleteButton" onClick={() => handleDeleteItem(item?.product_id)}>
+                            Delete
+                          </div>
                         </div>
                       </div>
+                      <div className="cartItemPrice">$ {item?.price}</div>
                     </div>
-                    <div className="cartItemPrice">$ {item?.price}</div>
-                  </div>
-                ))
-              ) : (
-                <div className="noItemInCart">There's no item in the cart.</div>
-              )}
+                  ))
+                ) : (
+                  <div className="noItemInCart">There's no item in the cart.</div>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="cartInformation">
-            <div className="cartInfoLine">
-              <div>Total Items</div>
-              <div>{totalItems}</div>
-            </div>
-            <div className="cartInfoLine">
-              <div>Total Saving</div>
-              <div>$1</div>
-            </div>
-            <div className="cartInfoLine">
-              <div>Subtotal</div>
-              <div>$ {totalPrice.toFixed(2)}</div>
-            </div>
-            <button className="cartCheckOutBtn">Check out</button>
-            <div className="cartLower">
-              <b>or</b>
-              <div
-                className="continueBtn"
-                onClick={() => {
-                  navigate("/catalog");
-                }}
-              >
-                Continue Shopping with us
+            <div className="cartInformation">
+              <div className="cartInfoLine">
+                <div>Total Items</div>
+                <div>{totalItems}</div>
+              </div>
+              <div className="cartInfoLine">
+                <div>Total Saving</div>
+                <div>$0</div>
+              </div>
+              <div className="cartInfoLine">
+                <div>Subtotal</div>
+                <div>$ {totalPrice.toFixed(2)}</div>
+              </div>
+              <button className="cartCheckOutBtn" onClick={onCheckOut}>
+                Check out
+              </button>
+              <div className="cartLower">
+                <b>or</b>
+                <div
+                  className="continueBtn"
+                  onClick={() => {
+                    navigate("/home");
+                  }}
+                >
+                  Continue Shopping with us
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
       <Footer />
