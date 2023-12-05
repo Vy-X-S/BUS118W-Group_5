@@ -55,7 +55,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <div className="pre-content">
       <Header />
       <div className="primary-container">
         <div className="filter-sidebar">

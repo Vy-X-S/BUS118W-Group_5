@@ -176,7 +176,7 @@ const ProductDescription = memo(() => {
   // }, []);
 
   return (
-    <div>
+    <div className="pre-content">
       <Header />
       <div className="containerProductDescription">
         <div className="breadCrumbProductDescription">

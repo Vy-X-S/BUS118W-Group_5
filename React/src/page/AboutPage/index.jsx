@@ -6,7 +6,7 @@ import AboutImage from "../../images/fruitbasket.png";
 
 const AboutPage = memo(() => {
     return (
-        <div>
+        <div className="pre-content">
             <Header />
             <div className="container">
                 <div>

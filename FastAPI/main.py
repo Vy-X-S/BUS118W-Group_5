@@ -120,8 +120,27 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.get("/products/", response_model=List[ProductModel])
 async def read_products(db: db_dependency, skip: int = 0, limit: int = 100):
-   products = db.query(models.Product).offset(skip).limit(limit).all()
-   return products
+   products_with_images = db.query(
+      models.Product,
+      models.ProductImage.image_URL.label('main_image_url')
+   ).join(
+      models.ProductImage,
+      (models.ProductImage.product_id == models.Product.product_id) & (models.ProductImage.image_sequence == 0),
+      isouter=True  # Use outer join to include products without images
+   ).offset(skip).limit(limit).all()
+
+   return [
+      ProductModel(
+         product_id=product.product_id,
+         product_name=product.product_name,
+         inventory_count=product.inventory_count,
+         description=product.description,
+         price=product.price,
+         category_id=product.category_id,
+         subcategory_id=product.subcategory_id,
+         main_image_url=main_image_url
+        ) for product, main_image_url in products_with_images
+   ]
 
 @app.post("/products/", response_model=ProductModel)
 async def create_product(product: ProductCreate, db: Session = Depends(get_db)):
