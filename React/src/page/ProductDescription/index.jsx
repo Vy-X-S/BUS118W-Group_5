@@ -191,13 +191,14 @@ const ProductDescription = memo(() => {
               <div className="allSubProductImage">
                 <div className="imageSidebar">
                   {data?.images.map((image, index) => (
-                    <img
-                      key={index}
-                      className="subProductImage"
-                      src={image.image_URL ?? data?.product?.main_image_url}
-                      alt={`Thumbnail ${index}`}
-                      // onClick={() => handleImageSelect(image.image_URL)}
-                    />
+                    <div className="subProductImage">
+                      <img
+                        key={index}
+                        src={image.image_URL ?? data?.product?.main_image_url}
+                        alt={`Thumbnail ${index}`}
+                        // onClick={() => handleImageSelect(image.image_URL)}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
