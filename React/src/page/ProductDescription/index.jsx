@@ -53,17 +53,17 @@
 //           {sub_category_name} | {product.product_name}
 //         </div>
 //         <div className="itemDescriptionContainer">
-//           <div className="imageSidebar">
-//             {images.map((image, index) => (
-//               <img
-//                 key={index}
-//                 className="thumbnailImage"
-//                 src={image.image_URL}
-//                 alt={`Thumbnail ${index}`}
-//                 onClick={() => handleImageSelect(image.image_URL)}
-//               />
-//             ))}
-//           </div>
+// <div className="imageSidebar">
+//   {images.map((image, index) => (
+//     <img
+//       key={index}
+//       className="thumbnailImage"
+//       src={image.image_URL}
+//       alt={`Thumbnail ${index}`}
+//       onClick={() => handleImageSelect(image.image_URL)}
+//     />
+//   ))}
+// </div>
 //           <div className="mainImageDisplay">
 //             <img className="productImage" src={selectedImage} alt={product.product_name} />
 //           </div>
@@ -189,9 +189,17 @@ const ProductDescription = memo(() => {
           <div className="itemDescriptionContainer">
             <div className="productImageContainer">
               <div className="allSubProductImage">
-                <img className="subProductImage" src={data?.product?.main_image_url ?? productImage} alt="" />
-                {/* <img className="subProductImage" src={data[0]?.product_image ?? productImage} alt="" />
-                <img className="subProductImage" src={data[0]?.product_image ?? productImage} alt="" /> */}
+                <div className="imageSidebar">
+                  {data?.images.map((image, index) => (
+                    <img
+                      key={index}
+                      className="subProductImage"
+                      src={image.image_URL ?? data?.product?.main_image_url}
+                      alt={`Thumbnail ${index}`}
+                      // onClick={() => handleImageSelect(image.image_URL)}
+                    />
+                  ))}
+                </div>
               </div>
               <img className="productImage" src={data?.product?.main_image_url ?? productImage} alt="product" />
             </div>

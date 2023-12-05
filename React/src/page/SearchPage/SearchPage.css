@@ -1,10 +1,9 @@
-
 .tiles-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; 
-  justify-content: flex-start; 
-  gap: 10px; 
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
   padding-top: 20px;
 }
 
@@ -12,24 +11,38 @@
   width: 15%;
   background-color: white;
   margin-right: 25px;
-
   display: flex;
   flex-direction: column;
   padding: 20px;
-}
-.filter-sidebar input {
-  width: 50px;
-  margin-right: 5px;
 }
 .filter-sidebar .price-filter {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.priceFilterInput {
+  padding: 5px 10px;
+  border: none; /* Remove default borders */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  padding: 10px; /* Add some padding for better appearance */
+  outline: none; /* Remove the default outline */
+  margin-bottom: 10px;
+}
+.buttonGoFilter{
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  background-color:#fd9043;
+  border-radius: 4px;
+}
 .results-container {
   flex-grow: 2;
-  >p{
+  > p {
     padding-top: 20px;
   }
 }
@@ -40,6 +53,7 @@
   align-items: center;
   gap: 10px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 .pagination button {
   background-color: transparent;
@@ -50,6 +64,6 @@
 
 .primary-container {
   justify-content: left;
-  height: 100vh;
+  height: 100%;
   display: flex;
 }
