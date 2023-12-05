@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ProductTileSet.css";
 import ItemContainer from "../ItemContainer/ItemContainer";
+import ProductTile from "../ProductTile/ProductTile";
 
 const ProductTileSet = ({ products }) => {
-  const productsPerPage = 7;
+  const productsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
   // const [, refresh] = useState(null);
   const maxPage = Math.ceil(products.length / productsPerPage) - 1;
@@ -24,9 +25,11 @@ const ProductTileSet = ({ products }) => {
         &lt;
       </button>
       <div className="productTiles">
-        {currentProducts.map((product) => {
-          return <ItemContainer product={product} />;
-        })}
+      {currentProducts.map((product) => {
+          return(
+          // <ProductTile key={product.product_id} product={product} />
+          <ItemContainer product={product} />
+        )})}
       </div>
       <button className="tile-pagination" onClick={handleNext} disabled={currentPage === maxPage}>
         &gt;
