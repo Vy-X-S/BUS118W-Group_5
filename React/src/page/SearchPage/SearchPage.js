@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import ProductTile from "../../components/ProductTile/ProductTile";
+// import ProductTile from "../../components/ProductTile/ProductTile";
 import ItemContainer from "../../components/ItemContainer/ItemContainer";
 
 import "./SearchPage.css";
@@ -68,9 +68,19 @@ const SearchPage = () => {
               </div>
             )}
             <div className="filter-group">
-              <input type="number" placeholder="Min $" onChange={(e) => setPriceFilter({ ...priceFilter, min: e.target.value })} />
-              <input type="number" placeholder="Max $" onChange={(e) => setPriceFilter({ ...priceFilter, max: e.target.value })} />
-              <button onClick={applyPriceFilter}>Go</button>
+              <input
+                className="priceFilterInput"
+                type="number"
+                placeholder="Min "
+                onChange={(e) => setPriceFilter({ ...priceFilter, min: e.target.value })}
+              />
+              <input
+                className="priceFilterInput"
+                type="number"
+                placeholder="Max "
+                onChange={(e) => setPriceFilter({ ...priceFilter, max: e.target.value })}
+              />
+              <button className="buttonGoFilter" onClick={applyPriceFilter}>Go</button>
             </div>
           </div>
         </div>

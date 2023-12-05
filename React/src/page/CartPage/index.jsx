@@ -88,8 +88,10 @@ const CartPage = memo(() => {
   };
 
   const onCheckOut = () => {
-    toast.success("Check out Successfully!");
-    handleClearCart();
+    if (cart) {
+      toast.success("Check out Successfully!");
+      handleClearCart();
+    }
   };
 
   return (
