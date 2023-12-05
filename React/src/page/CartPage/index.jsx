@@ -89,7 +89,7 @@ const CartPage = memo(() => {
 
   const onCheckOut = () => {
     if (cart) {
-      toast.success("Check out Successfully!");
+      toast.success("Check out Successfully!",{toastId:"checkOutSuccess"});
       handleClearCart();
     }
   };
@@ -111,7 +111,11 @@ const CartPage = memo(() => {
                 {cart ? (
                   cart?.map((item, key) => (
                     <div key={key} className="cartProductInfo">
-                      <img className="cartProductImage" src={item?.main_image_url} alt="product" />
+                      <img className="cartProductImage" src={item?.main_image_url} alt="product" 
+                      onClick={() => {
+                        navigate(`/product/${item?.product_id}`);
+                      }}
+                      />
                       <div className="cartProductDescription">
                         <div>{item.product_name}</div>
                         <div> </div>
