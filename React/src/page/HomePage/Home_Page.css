@@ -44,3 +44,21 @@
     cursor: pointer;
     font-size: 15px;
 }
+
+@media (max-width: 900px) {
+    .splash-container  {
+        display: none;
+    }
+
+    .buttons {
+        flex-direction: column; 
+        gap: 5px;
+        align-items: center;
+    }
+
+    .buttons button {
+        padding: 10px; /* Smaller padding for buttons */
+        font-size: 13px; /* Smaller font size */
+        width: 200px;
+    }
+}
