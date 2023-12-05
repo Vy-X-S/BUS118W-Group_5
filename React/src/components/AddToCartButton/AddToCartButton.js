@@ -28,6 +28,7 @@ const AddToCartButton = memo(({ product }) => {
 
   const updateUI = () => {
     toast.success("Added to cart!", {
+      toastId:"addToCartSuccess",
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,

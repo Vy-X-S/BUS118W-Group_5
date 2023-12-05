@@ -142,7 +142,7 @@ import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
 import productImage from "../../images/productDemoImg.png";
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ApiService from "../../services/api_services";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
