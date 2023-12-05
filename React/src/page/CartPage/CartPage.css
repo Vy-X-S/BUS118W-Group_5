@@ -1,9 +1,8 @@
 /* Nguyen Cart CSS */
-.masterCartContainer{
+.masterCartContainer {
   display: flex;
   flex-direction: column;
   flex: 1;
-
 }
 .mainCartContainer {
   display: flex;
@@ -49,10 +48,10 @@
       }
       .clearCartButton {
         margin-left: auto;
-        text-decoration: underline;
         width: fit-content;
         padding: 10px 0;
         &:hover {
+          text-decoration: underline;
           cursor: pointer;
           color: blue;
         }
@@ -63,7 +62,7 @@
         gap: 20px;
         width: 100%;
         .noItemInCart {
-          font-size: 24px;
+          font-size: 20px;
           padding-top: 16px;
           text-align: center;
         }
@@ -204,10 +203,10 @@
         }
         .clearCartButton {
           margin-left: 0;
-          text-decoration: underline;
           width: fit-content;
           padding: 10px 0;
           &:hover {
+            text-decoration: underline;
             cursor: pointer;
             color: blue;
           }
@@ -219,8 +218,9 @@
           width: 100%;
           max-width: ;
           .noItemInCart {
-            font-size: 24px;
+            font-size: 12px;
             padding-top: 16px;
+            padding-bottom: 30px;
             text-align: center;
           }
           .cartProductInfo {
@@ -311,6 +311,3 @@
     }
   }
 }
-
-
-

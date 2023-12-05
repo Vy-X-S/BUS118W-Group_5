@@ -37,6 +37,9 @@ const AddToCartButton = memo(({ product }) => {
       progress: undefined,
       theme: "light",
     });
+    // Dispatch custom event after update cart
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event);
   };
 
   return (

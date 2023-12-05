@@ -41,6 +41,8 @@ import Cart from "./page/CartPage";
 import { useRoutes } from "react-router-dom";
 import SubcategoryPage from "./page/SubcategoryPage";
 import SearchPage from "./page/SearchPage/SearchPage";
+import FAQ from "./components/FAQ/FAQ";
+import Team from "./components/Team/Team";
 
 function App() {
   const routes = useRoutes([
@@ -79,6 +81,14 @@ function App() {
     {
       path: "/search",
       element: <SearchPage key={window.location.search} />,
+    },
+    {
+      path: "/faq",
+      element: <FAQ />,
+    },
+    {
+      path: "/teams",
+      element: <Team />,
     },
   ]);
 

@@ -8,7 +8,7 @@ import "./Home_Page.css"
 
 
 const HomePage = ()=> {
-  const [productSets, setProductSets] = useState([]);
+  // const [productSets, setProductSets] = useState([]);
   const [division1, setDivision1] = useState([]);
   const [division2, setDivision2] = useState([]);
   const [division3, setDivision3] = useState([]);
