@@ -34,9 +34,9 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "Matt",
-    role: "",
-    description: "",
+    name: "Matthew Benjamin",
+    role: "Designer, Student",
+    description: "Matthew B. is a student at SJSU.",
     // image: "team-member5.jpg",
   },
   {
