@@ -42,8 +42,8 @@ const teamMembers = [
   {
     id: 6,
     name: "Joseph Huynh",
-    role: "",
-    description: "",
+    role: "Designer",
+    description: "Joseph is an RF Wireless Engineer, skilled in wireless networks and semiconductors/antennas.",
     // image: "team-member6.jpg",
   },
 ];
