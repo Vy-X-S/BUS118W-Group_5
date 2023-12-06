@@ -21,8 +21,8 @@ const teamMembers = [
   {
     id: 3,
     name: "Jerry Tseng",
-    role: "",
-    description: "",
+    role: "Student, Team member, Designer",
+    description: "Jerry is a student at SJSU and focused on creating visually engaging designs for the website.",
     // image: "team-member3.jpg",
   },
   {
