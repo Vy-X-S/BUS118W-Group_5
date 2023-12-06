@@ -17,9 +17,10 @@
   .itemDescriptionContainer {
     padding-top: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 36px;
+    width: 100%;
     .productImageContainer {
       display: flex;
       width: 100%;
@@ -213,6 +214,15 @@ hr {
   width: 100%;
 }
 
+@media (max-width: 1150px) {
+  .containerProductDescription .itemDescriptionContainer {
+    flex-direction: column;
+  }
+  .productInfo {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .containerProductDescription {
     display: flex;
@@ -230,6 +240,7 @@ hr {
       justify-content: center;
       align-items: center;
       gap: 20px;
+      width: 100%;
       .productImageContainer {
         display: flex;
         width: 100%;
@@ -283,7 +294,6 @@ hr {
         .productName {
           color: var(--Dark-Gray, #2f2d2e);
           font-family: Verdana;
-          font-size: 12px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
@@ -408,5 +418,37 @@ hr {
   }
   hr {
     width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .containerProductDescription {
+    width: 100%;
+    padding: 0px;
+    gap: 20px;
+    margin-bottom: 50px;
+    
+  }
+  .containerProductDescription .productInfo {
+    padding: 0;
+    width: 80%;
+    font-size: 1.2rem;
+  }
+  .containerProductDescription .itemDescriptionContainer .productImageContainer .allSubProductImage {
+    display: none;
+  }
+  .deliOptions {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .containerProductDescription .deliOptions span {
+    font-size: 1rem;
+  }
+  .containerProductDescription .itemDescriptionContainer {
+    width: 80%;
+  }
+  .breadCrumbProductDescription {
+    padding: 20px;
   }
 }

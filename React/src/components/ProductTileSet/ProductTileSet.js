@@ -21,7 +21,7 @@ const ProductTileSet = ({ products }) => {
 
   return (
     <div className="productTileSet">
-      <button className="tile-pagination" onClick={handlePrev} disabled={currentPage === 0}>
+      <button className="tile-pagination tile-left" onClick={handlePrev} disabled={currentPage === 0}>
         &lt;
       </button>
       <div className="productTiles">
@@ -31,7 +31,7 @@ const ProductTileSet = ({ products }) => {
           <ItemContainer product={product} />
         )})}
       </div>
-      <button className="tile-pagination" onClick={handleNext} disabled={currentPage === maxPage}>
+      <button className="tile-pagination tile-right" onClick={handleNext} disabled={currentPage === maxPage}>
         &gt;
       </button>
     </div>
