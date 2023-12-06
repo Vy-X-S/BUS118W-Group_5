@@ -14,8 +14,8 @@ const teamMembers = [
   {
     id: 2,
     name: "Mikhail Ocampo",
-    role: "Web Developer, UX/UI Designer",
-    description: "Mikhail is a talented designer passionate about creating delightful user experiences.",
+    role: "Fullstack Developer",
+    description: "Mikhail is an AI Engineer skilled in working with front and backend development.",
     // image: "team-member2.jpg",
   },
   {
