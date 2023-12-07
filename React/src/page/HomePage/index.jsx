@@ -36,7 +36,7 @@ const HomePage = ()=> {
       try {
         const response = await axios.get('http://localhost:8000/products/?skip=0&limit=100');
         const products = response.data;
-        const sets = distributeProducts(products, 3, 5); // For example, 2 sets with 5 products each
+        const sets = distributeProducts(products, 3, 8); // For example, 2 sets with 5 products each
 
         setDivision1(sets[0]);
         setDivision2(sets[1]);

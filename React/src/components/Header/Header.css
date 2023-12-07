@@ -241,6 +241,14 @@ nav ul li:hover .subcategories {
     .top-section h1 {
         font-size: 1.5rem;
     }
+    .search-section {
+        height: 40px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .search-section input {
+        width: 80%;
+    }
 }
 
 /* Phone Styles Small */
@@ -253,8 +261,14 @@ nav ul li:hover .subcategories {
         height: 25%;
     }
     .top-section .search-section {
+        height: 40px;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
         width: 100%;
-        margin-bottom: 10px;
+    }
+    .search-section button {
+        padding-right: 10%;
     }
     .top-section .cart-section {
         display: none;

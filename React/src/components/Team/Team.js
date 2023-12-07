@@ -14,15 +14,15 @@ const teamMembers = [
   {
     id: 2,
     name: "Mikhail Ocampo",
-    role: "Web Developer, UX/UI Designer",
-    description: "Mikhail is a talented designer passionate about creating delightful user experiences.",
+    role: "Fullstack Developer",
+    description: "Mikhail is an AI Engineer skilled in working with front and backend development.",
     // image: "team-member2.jpg",
   },
   {
     id: 3,
     name: "Jerry Tseng",
-    role: "",
-    description: "",
+    role: "Student, Team member, Designer",
+    description: "Jerry is a student at SJSU and focused on creating visually engaging designs for the website.",
     // image: "team-member3.jpg",
   },
   {
@@ -34,16 +34,16 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "Matt",
-    role: "",
-    description: "",
+    name: "Matthew Benjamin",
+    role: "Designer, Student",
+    description: "Matthew B. is a student at SJSU.",
     // image: "team-member5.jpg",
   },
   {
     id: 6,
     name: "Joseph Huynh",
-    role: "",
-    description: "",
+    role: "Designer",
+    description: "Joseph is an RF Wireless Engineer, skilled in wireless networks and semiconductors/antennas.",
     // image: "team-member6.jpg",
   },
 ];

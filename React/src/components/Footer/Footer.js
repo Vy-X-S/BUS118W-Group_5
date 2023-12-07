@@ -24,26 +24,6 @@ function Footer() {
             <li>
               <Link to={"/faq"}>FAQs</Link>
             </li>
-            <li>
-              <a href="#">Contact Us</a>
-            </li>
-            <li>
-              <a href="#">Returns & Exchanges</a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-section">
-          <h4>Connect</h4>
-          <ul>
-            <li>
-              <a href="#">Blog</a>
-            </li>
-            <li>
-              <a href="#">Newsletter</a>
-            </li>
-            <li>
-              <a href="#">Social Media</a>
-            </li>
           </ul>
         </div>
       </div>
