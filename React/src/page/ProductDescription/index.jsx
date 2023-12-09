@@ -142,7 +142,7 @@ import Footer from "../../components/Footer/Footer";
 import "./ProductDescription.css";
 import productImage from "../../images/productDemoImg.png";
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import ApiService from "../../services/api_services";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -168,12 +168,12 @@ const ProductDescription = memo(() => {
     }
   }, [getProduct]);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 500);
-  // }, []);
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 250);
+  }, []);
 
   return (
     <div className="pre-content">

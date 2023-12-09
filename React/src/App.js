@@ -34,7 +34,7 @@
 import "./App.css";
 import HomePage from "./page/HomePage";
 // import ProductPage from "./page/ProductPage";
-import ProductCatalogPage from "./page/ProductCatalogPage";
+// import ProductCatalogPage from "./page/ProductCatalogPage";
 import ProductDescription from "./page/ProductDescription";
 import AboutPage from "./page/AboutPage";
 import Cart from "./page/CartPage";
@@ -54,10 +54,10 @@ function App() {
       path: "/home",
       element: <HomePage />,
     },
-    {
-      path: "/catalog",
-      element: <ProductCatalogPage />,
-    },
+    // {
+    //   path: "/catalog",
+    //   element: <ProductCatalogPage />,
+    // },
     // {
     //   path: "/product/:category",
     //   element: <ProductPage />,
